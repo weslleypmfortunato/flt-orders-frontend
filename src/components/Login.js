@@ -54,34 +54,38 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="text-3xl mb-5">Login</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col items-center">
         <div>
           <input 
             type="text" 
+            className="m-1 p-1 rounded border-1 border-black w-52 h-9"
             required
             placeholder="Employee name"
             value={name}
             onChange={e => setName(e.target.value)}
           />
         </div>
-
-        <div>
-          <input 
-            type={showPassword ? 'text' : 'password'}
-            required
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)} 
-          />
+        <div className="flex items-center">
+          <div className="ml-4">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              className="ml-4 p-1 rounded border-1 border-black w-52 h-9"
+              required
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
           <FontAwesomeIcon
             icon={showPassword ? faEyeSlash : faEye}
             onClick={handleTogglePassword}
+            className="bg-white p-1 rounded ml-2 transition duration-500 transform hover:scale-125 hover:border"
           />
         </div>
-
         <button
-          type="submit">
+          type="submit"
+          className="border-1 border-black rounded text-lg px-2 bg-blue-500 text-white font-semibold m-5 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border">
           Login
         </button>
       </form>

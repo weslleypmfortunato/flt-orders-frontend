@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div>
       <Navbar />
-      <h1>
+      <h1 className="mt-3 font-medium">
         Welcome <span>{ loggedInUser.user.name.split(' ')[0] }</span>!
       </h1>
       <WorkOrdersList />

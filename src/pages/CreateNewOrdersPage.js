@@ -66,67 +66,81 @@ const CreateNewOrdersPage = () => {
   return (
     <div>
       <Navbar/>
-      <h1>Add new order</h1>
+      <h1 className="mb-2 mt-3 text-2xl font-semibold">Add new order</h1>
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="flex flex-col items-center">
+            <div className="flex mb-1">
+              <input
+                type="text"
+                className="border-2 rounded px-1 w-48 h-9"
+                required
+                value={workOrderNumber}
+                onChange={e => setWorkOrderNumber(e.target.value)}
+                placeholder="Work Order Number"
+              />
+              <input
+                type="text"
+                className="border-2 rounded px-1 w-48 h-9"
+                required
+                value={productName}
+                onChange={e => setProductName(e.target.value)}
+                placeholder="Product Name"
+              />
+            </div>
+            <div className="flex mb-1">
+              <input
+                type="text"
+                className="border-2 rounded px-1 w-48 h-9"
+                required
+                value={productDescription}
+                onChange={e => setProductDescription(e.target.value)}
+                placeholder="Work Order Description"
+              />
+              <input
+                type="text"
+                className="border-2 rounded px-1 w-48 h-9"
+                required
+                value={orderQty}
+                onChange={e => setOrderQty(e.target.value)}
+                placeholder="Order Quantity"
+              />
+            </div>
+            <div className="flex mb-1">
+              <input
+                type="text"
+                className="border-2 rounded px-1 w-48 h-9"
+                required
+                value={priority}
+                onChange={e => setPriority(e.target.value)}
+                placeholder="Priority(must be a number)"
+              />
+              <input
+                type="text"
+                className="border-2 rounded px-1 w-48 h-9"
+                required
+                value={owner}
+                onChange={e => setOwner(e.target.value)}
+                placeholder="Owner"
+              />
+            </div>
             <input 
               type="text" 
-              required
-              value={workOrderNumber}
-              onChange={e => setWorkOrderNumber(e.target.value)}
-              placeholder="Work Order Number"
-            />
-            <input 
-              type="text" 
-              required
-              value={productName}
-              onChange={e => setProductName(e.target.value)}
-              placeholder="Product Name"
-            />
-            <input 
-              type="text" 
-              required
-              value={productDescription}
-              onChange={e => setProductDescription(e.target.value)}
-              placeholder="Work Order Description"
-            />
-            <input 
-              type="text" 
-              required
-              value={orderQty}
-              onChange={e => setOrderQty(e.target.value)}
-              placeholder="Order Quantity"
-            />
-            <input 
-              type="text" 
-              required
-              value={priority}
-              onChange={e => setPriority(e.target.value)}
-              placeholder="Priority"
-            />
-            <input 
-              type="text" 
-              required
-              value={owner}
-              onChange={e => setOwner(e.target.value)}
-              placeholder="Owner"
-            />
-            <input 
-              type="text" 
+              className="border-2 rounded px-1 w-96 h-9"
               value={remarks}
               onChange={e => setRemarks(e.target.value)}
               placeholder="Remarks"
             />
           </div>
-          <button
-            type="submit">
-            Add
-          </button>
+            <button
+              type="submit"
+              className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9">
+              Add
+            </button>
         </form>
       </div>
       <Link to={'/home'}>
-        <p>Back</p>
+        <p className="text-blue-500 underline mt-3">Back</p>
       </Link>
     </div>
   )
