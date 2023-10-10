@@ -54,7 +54,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2 className="text-3xl mb-5">Login</h2>
+      <h2 className="text-3xl mb-4 text-white">Login</h2>
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
         <div>
           <input 
