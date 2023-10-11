@@ -15,7 +15,7 @@ const LoginPage = () => {
   return (
     <div className='flex flex-col items-center' style={backgroundStyle}>
       <img src={flt} alt="FLT logo" className='mt-44 w-48 rounded mb-8'/>
-      <h1 className="text-5xl text-white font-semibold">Welcome to FLT Orders & Shortages Dashboard</h1>
+      <h1 className="text-5xl text-white font-semibold mt-5">Welcome to FLT Orders & Shortages Dashboard</h1>
       <Login />
     </div>
   )

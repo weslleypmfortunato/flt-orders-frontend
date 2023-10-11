@@ -13,16 +13,18 @@ const Navbar = props => {
       <div>
         <ul className="flex flex-row justify-between items-center px-2">
           <li>
-            <img src={flt} alt="FLT Logo" className="w-24 mt-2"/>
+            <Link to={'/home'}>
+              <img src={flt} alt="FLT Logo" className="w-24 mt-2"/>
+            </Link>
           </li>
           <div className="flex font-semibold mt-3 mr-2">
             <li className="mr-10">
-              <Link to='/home' className="no-underline">Home</Link>
+              <Link to='/home' className="no-underline hover:underline">Home</Link>
             </li>
             <li>
               <Link
                 to={'/'}
-                className="no-underline"
+                className="no-underline hover:underline"
                 onClick={() => logout(employee.jwt)}>
                 Logout
               </Link>

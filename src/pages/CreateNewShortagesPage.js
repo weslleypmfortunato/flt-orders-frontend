@@ -43,7 +43,7 @@ const CreateNewShortagesPage = () => {
         if (response.status === 201) {
           setRefresh(!refresh)
           Swal.fire({
-            text: 'Adicionar a mensagem de erro na WorkOrders.js',
+            text: 'Shortage added succesfully!',
             imageUrl: warning,
             imageWidth: 100,
             imageHeight: 100,
@@ -89,7 +89,7 @@ const CreateNewShortagesPage = () => {
           </div>
           <button
             type="submit"
-            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9">
+            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900">
             Add
           </button>
         </form>

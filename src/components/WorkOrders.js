@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const WorkOrdersList = () => {
   const [orders, setOrders] = useState([])
   const [shortages, setShortages] = useState([])
-  const [refresh] = useState(true)
+  const [refresh, setRefresh] = useState(true)
 
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
 
@@ -27,6 +29,18 @@ const WorkOrdersList = () => {
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  const deleteOrder = (id) => {
+    axios.delete(`${process.env.REACT_APP_API_URL}/order/${id}`, {headers})
+      .then(setRefresh(!refresh))
+      .catch(error => console.log(error))
+  }
+
+  const deleteShortage = (id) => {
+    axios.delete(`${process.env.REACT_APP_API_URL}/shortage/${id}`, {headers})
+      .then(setRefresh(!refresh))
+      .catch(error => console.log(error))
   }
 
   useEffect(() => {
@@ -63,27 +77,34 @@ const WorkOrdersList = () => {
           return (
             <div key={order._id}>
               <div className="w-full">
-                <table className="border-2 border-gray-400 mb-0.5">
+                <table className="mb-0.5">
                   <thead>
                     <tr>
-                      <th className="border-2 border-gray-400 w-16 px-1">Priority</th>
-                      <th className="border-2 border-gray-400 w-24">Work Order</th>
-                      <th className="border-2 border-gray-400 px-1">Product</th>
-                      <th className="border-2 border-gray-400 w-52">Description</th>
-                      <th className="border-2 border-gray-400 px-1">Quantity</th>
-                      <th className="border-2 border-gray-400 w-28">Owner</th>
-                      <th className="border-2 border-gray-400 w-96">Remarks</th>
+                      <th className="border border-gray-900 w-16 px-1 font-semibold">Priority</th>
+                      <th className="border border-gray-900 w-24 font-semibold">Work Order</th>
+                      <th className="border border-gray-900 px-1 font-semibold">Product</th>
+                      <th className="border border-gray-900 w-52 font-semibold">Description</th>
+                      <th className="border border-gray-900 px-1 font-semibold">Quantity</th>
+                      <th className="border border-gray-900 w-28 font-semibold">Owner</th>
+                      <th className="border border-gray-900 w-96 font-semibold">Remarks</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="text-blue-500 border-l-2 border-t-2 border-gray-400">{order.priority}</td>
-                      <td className="text-blue-500 border-l-2 border-t-2 border-gray-400"><Link to={`/order/edit/${order._id}`}>{order.workOrderNumber}</Link></td>
-                      <td className="text-blue-500 border-l-2 border-t-2 border-gray-400">{order.productName}</td>
-                      <td className="text-blue-500 border-l-2 border-t-2 border-gray-400 w-20">{order.productDescription.toUpperCase()}</td>
-                      <td className="text-blue-500 border-l-2 border-t-2 border-gray-400">{order.orderQty}</td>
-                      <td className="text-blue-500 border-l-2 border-t-2 border-gray-400">{order.owner}</td>
-                      <td className="text-blue-500 border-l-2 border-r-2 border-t-2 border-gray-400 text-left pl-2">{capitalizeFirstLetter(order.remarks)}</td>
+                    <tr className="hover:bg-blue-100">
+                      <td className="text-blue-800 border border-gray-900 shadow-sm">{order.priority}</td>
+                      <td className="text-blue-800 border border-gray-900 shadow-sm"><Link to={`/order/edit/${order._id}`} className="text-blue-800">{order.workOrderNumber}</Link></td>
+                      <td className="text-blue-800 border border-gray-900 shadow-sm">{order.productName}</td>
+                      <td className="text-blue-800 border border-gray-900 shadow-sm w-20">{order.productDescription.toUpperCase()}</td>
+                      <td className="text-blue-800 border border-gray-900 shadow-sm">{order.orderQty}</td>
+                      <td className="text-blue-800 border border-gray-900 shadow-sm">{order.owner}</td>
+                      <td className="text-blue-800 border border-gray-900 shadow-sm text-left pl-1">{capitalizeFirstLetter(order.remarks)}</td>
+                      <td className="boder-0">
+                        <button
+                          onClick={() => deleteOrder(order._id)}
+                          className="text-red-400 border-black ml-0.5 transition duration-500 transform hover:scale-125 hover:text-red-600">
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -96,7 +117,7 @@ const WorkOrdersList = () => {
         <Link to='/orders/new'>
           <button
             type="button"
-            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9">
+            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900">
             Add New Order
           </button>
         </Link>
@@ -111,19 +132,26 @@ const WorkOrdersList = () => {
             return (
               <div key={shortage._id}>
                 <div className="w-full">
-                  <table className="border-2 border-gray-400 mb-0.5">
+                  <table className="mb-0.5">
                     <thead>
                       <tr>
-                        <th className="border-2 border-gray-400 w-96">Material</th>
-                        <th className="border-2 border-gray-400 w-64">Quantity</th>
-                        <th className="border-2 border-gray-400 w-96">Remarks</th>
+                        <th className="border border-gray-900 w-96 font-semibold">Material</th>
+                        <th className="border border-gray-900 w-64 font-semibold">Quantity</th>
+                        <th className="border border-gray-900 w-96 font-semibold">Remarks</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td className="text-blue-500 border-l-2 border-t-2 border-gray-400"><Link to={`/shortage/edit/${shortage._id}`}>{shortage.materialName}</Link></td>
-                        <td className="text-blue-500 border-l-2 border-t-2 border-gray-400">{shortage.materialQty}</td>
-                        <td className="text-blue-500 border-l-2 border-t-2 border-gray-400">{shortage.shortageRemark}</td>
+                      <tr className="hover:bg-blue-100">
+                        <td className="text-blue-800 border border-gray-900 shadow-sm"><Link to={`/shortage/edit/${shortage._id}`} className="text-blue-800">{shortage.materialName}</Link></td>
+                        <td className="text-blue-800 border border-gray-900 shadow-sm">{shortage.materialQty}</td>
+                        <td className="text-blue-800 border border-gray-900 shadow-sm text-left pl-1">{shortage.shortageRemark}</td>
+                        <td className="boder-0">
+                        <button
+                          onClick={() => deleteShortage(shortage._id)}
+                          className="text-red-400 border-black ml-0.5 transition duration-500 transform hover:scale-125 hover:text-red-600">
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                      </td>
                       </tr>
                     </tbody>
                   </table>
@@ -135,7 +163,7 @@ const WorkOrdersList = () => {
         <Link to='/shortages/new'>
           <button
             type="button"
-            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9">
+            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-2xl shadow-blue-900">
             Add New Shortage
           </button>
         </Link>
