@@ -18,6 +18,9 @@ const Navbar = props => {
             </Link>
           </li>
           <div className="flex font-semibold mt-3 mr-2">
+          <li className="mr-10">
+              <Link to='/users' className="no-underline hover:underline">Users</Link>
+            </li>
             <li className="mr-10">
               <Link to='/home' className="no-underline hover:underline">Home</Link>
             </li>

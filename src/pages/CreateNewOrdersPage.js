@@ -132,11 +132,11 @@ const CreateNewOrdersPage = () => {
               placeholder="Remarks"
             />
           </div>
-            <button
-              type="submit"
-              className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900">
-              Add
-            </button>
+          <button
+            type="submit"
+            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900">
+            Add
+          </button>
         </form>
       </div>
       <Link to={'/home'}>
