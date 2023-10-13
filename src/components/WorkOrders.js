@@ -135,7 +135,8 @@ const WorkOrdersList = () => {
                   <thead>
                     <tr>
                       <th className="border border-gray-900 w-96 font-semibold">Material</th>
-                      <th className="border border-gray-900 w-64 font-semibold">Quantity</th>
+                      <th className="border border-gray-900 w-32 font-semibold">Quantity</th>
+                      <th className="border border-gray-900 w-36 font-semibold">Due Date</th>
                       <th className="border border-gray-900 w-96 font-semibold">Remarks</th>
                     </tr>
                   </thead>
@@ -144,6 +145,7 @@ const WorkOrdersList = () => {
                       <tr className="hover:bg-blue-100">
                         <td className="text-blue-800 border border-gray-900 text-left pl-1"><Link to={`/shortage/edit/${shortage._id}`} className="text-blue-800">{shortage.materialName}</Link></td>
                         <td className="text-blue-800 border border-gray-900">{shortage.materialQty}</td>
+                        <td className="text-blue-800 border border-gray-900">{shortage.dueDate ? shortage.dueDate.substring(0, 10) : ''}</td>
                         <td className="text-blue-800 border border-gray-900 text-left pl-1">{shortage.shortageRemark}</td>
                         <td className="boder-0">
                           <button

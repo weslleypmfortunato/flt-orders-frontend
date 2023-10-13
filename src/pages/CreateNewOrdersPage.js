@@ -98,7 +98,7 @@ const CreateNewOrdersPage = () => {
                 placeholder="Work Order Description"
               />
               <input
-                type="text"
+                type="number"
                 className="border-2 rounded px-1 w-48 h-9"
                 required
                 value={orderQty}
@@ -108,12 +108,12 @@ const CreateNewOrdersPage = () => {
             </div>
             <div className="flex mb-1">
               <input
-                type="text"
+                type="number"
                 className="border-2 rounded px-1 w-48 h-9"
                 required
                 value={priority}
                 onChange={e => setPriority(e.target.value)}
-                placeholder="Priority(must be a number)"
+                placeholder="Priority"
               />
               <input
                 type="text"

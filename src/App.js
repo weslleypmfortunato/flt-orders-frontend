@@ -32,6 +32,4 @@ function App() {
 
 export default App;
 
-
-// adicionar um campo de Due para shortage material **
 // Em ordens, adicionar um status com um select **

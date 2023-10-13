@@ -4,10 +4,13 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const ShortageEditPage = () => {
   const [materialName, setMaterialName] = useState('')
   const [materialQty, setMaterialQty] = useState('')
+  const [dueDate, setDueDate] = useState('')
   const [shortageRemark, setShortageRemark] = useState('')
   const [loading, setLoading] = useState(true)
 
@@ -34,10 +37,14 @@ const ShortageEditPage = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/shortage/${shortageId}`, { headers })
       .then(response => {
         const {
-          materialName, materialQty, shortageRemark
+          materialName, materialQty, dueDate, shortageRemark
         } = response.data
+
+        const due = new Date(dueDate)
+
         setMaterialName(materialName)
         setMaterialQty(materialQty)
+        setDueDate(due)
         setShortageRemark(shortageRemark)
         setLoading(false)
       }).catch (error => {
@@ -51,7 +58,7 @@ const ShortageEditPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const editedShortage = {materialName, materialQty, shortageRemark}
+    const editedShortage = {materialName, materialQty, dueDate, shortageRemark}
 
     axios.put(`${process.env.REACT_APP_API_URL}/shortage/edit/${shortageId}`, editedShortage)
       .then(response => {
@@ -86,17 +93,23 @@ const ShortageEditPage = () => {
               placeholder="Material Name"
             />
             <input 
-              type="text" 
+              type="number" 
               className="border-2 rounded px-1 w-52 h-9 mb-1"
               required
               value={materialQty}
               onChange={e => setMaterialQty(e.target.value)}
               placeholder="Quantity"
             />
+            <DatePicker
+              className="border-2 rounded px-1 w-52 h-9 mb-1"
+              selected={dueDate}
+              onChange={(date) => setDueDate(date)}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Due Date"
+            />
             <input 
               type="text" 
               className="border-2 rounded px-1 w-52 h-9"
-              required
               value={shortageRemark}
               onChange={e => setShortageRemark(e.target.value)}
               placeholder="Remarks"

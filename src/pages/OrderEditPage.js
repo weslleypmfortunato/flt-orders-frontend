@@ -116,7 +116,7 @@ const OrderEditPage = () => {
                     placeholder="Work Order Description"
                   />
                   <input
-                    type="text"
+                    type="number"
                     className="border-2 rounded px-1 w-48 h-9"
                     required
                     value={orderQty}
@@ -128,7 +128,7 @@ const OrderEditPage = () => {
             <div>
                 <div className="flex mb-1">
                   <input
-                    type="text"
+                    type="number"
                     className="border-2 rounded px-1 w-48 h-9"
                     required
                     value={priority}

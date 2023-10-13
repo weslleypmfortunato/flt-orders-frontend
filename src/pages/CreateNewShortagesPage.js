@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
 import Navbar from "../components/Navbar";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateNewShortagesPage = () => {
   const [shortages, setShortages] = useState([])
   const [materialName, setMaterialName] = useState('')
   const [materialQty, setMaterialQty] = useState('')
+  const [dueDate, setDueDate] = useState('')
   const [shortageRemark, setShortageRemark] = useState('')
   const [refresh, setRefresh] = useState(true)
 
@@ -31,11 +34,12 @@ const CreateNewShortagesPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    const newShortage = { materialName, materialQty, shortageRemark }
+    const newShortage = { materialName, materialQty, dueDate, shortageRemark }
 
     setShortages([...shortages, newShortage])
     setMaterialName('')
     setMaterialQty('')
+    setDueDate('')
     setShortageRemark('')
 
     axios.post(`${process.env.REACT_APP_API_URL}/shortages/new`, newShortage, { headers })
@@ -71,17 +75,23 @@ const CreateNewShortagesPage = () => {
               placeholder="Material Name"
             />
             <input 
-              type="text" 
+              type="number" 
               className="border-2 rounded px-1 w-52 h-9 mb-1"
               required
               value={materialQty}
               onChange={e => setMaterialQty(e.target.value)}
               placeholder="Quantity"
             />
+            <DatePicker
+              className="border-2 rounded px-1 w-52 h-9 mb-1"
+              selected={dueDate}
+              onChange={(date) => setDueDate(date)}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Due Date"
+            />
             <textarea 
               type="text" 
               className="border-2 rounded px-1 w-52 h-9"
-              required
               value={shortageRemark}
               onChange={e => setShortageRemark(e.target.value)}
               placeholder="Remarks"

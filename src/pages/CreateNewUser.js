@@ -96,6 +96,7 @@ const CreateNewUserPage = () => {
                   ? "text-black"
                   : "text-gray-400"
               }`}
+                required
                 value={level}
                 onChange={e => setLevel(e.target.value)}>
                 <option value="">Choose an user level</option>
