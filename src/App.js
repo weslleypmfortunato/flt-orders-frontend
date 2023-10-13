@@ -34,6 +34,4 @@ export default App;
 
 
 // adicionar um campo de Due para shortage material **
-// Em add new user precisa que o Level e Department sejam um select que mostre as opções pre definidas
-// EM add new user precisa que o Starting Date e o DOB abram um callendar
 // Em ordens, adicionar um status com um select **

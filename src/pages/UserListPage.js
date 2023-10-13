@@ -33,7 +33,9 @@ const UserListPage = () => {
 
   const deleteUser = (id) => {
     axios.delete(`${process.env.REACT_APP_API_URL}/user/${id}`, {headers})
-      .then(setRefresh(!refresh))
+      .then(() => {
+        setRefresh(prev => !prev)
+      })
       .catch(error => console.log(error))
   }
 
@@ -99,9 +101,6 @@ const UserListPage = () => {
       </div>
     </div>
   )
-
-
-
 }
 
 export default UserListPage

@@ -70,7 +70,7 @@ const WorkOrdersList = () => {
   }, [refresh])
 
   return (
-    <div className="flex flex-col items-center mt-5 w-full">
+    <div className="flex flex-col items-center mt-5 w-full px-2">
       <h1 className="mb-2 text-2xl font-semibold">Work Orders List</h1>
       <div>
         {orders.length > 0 && (

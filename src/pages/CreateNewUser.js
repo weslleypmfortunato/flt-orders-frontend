@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
 import Navbar from "../components/Navbar";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateNewUserPage = () => {
   const [users, setUsers] = useState([])
@@ -88,14 +90,18 @@ const CreateNewUserPage = () => {
                 onChange={e => setName(e.target.value)}
                 placeholder="Name"
               />
-              <input 
-                type="text" 
-                className="border-2 rounded px-1 w-48 h-9"
-                required
+              <select
+                className={`border-2 rounded px-1 w-48 h-9 ${
+                level === "admin" || level === "user"
+                  ? "text-black"
+                  : "text-gray-400"
+              }`}
                 value={level}
-                onChange={e => setLevel(e.target.value)}
-                placeholder="Level (admin or user)"
-              />
+                onChange={e => setLevel(e.target.value)}>
+                <option value="">Choose an user level</option>
+                <option value="admin">Administrator</option>
+                <option value="user">User</option>
+              </select>
             </div>
             <div className="flex mb-1">
               <input 
@@ -106,14 +112,18 @@ const CreateNewUserPage = () => {
                 onChange={e => setPassword(e.target.value)}
                 placeholder="Password"
               />
-              <input 
-                type="text" 
-                className="border-2 rounded px-1 w-48 h-9"
-                required
+              <select
+                className={`border-2 rounded px-1 w-48 h-9 ${
+                department === "production" || department === "warehouse"
+                  ? "text-black"
+                  : "text-gray-400"
+              }`}
                 value={department}
-                onChange={e => setDepartment(e.target.value)}
-                placeholder="Department"
-              />
+                onChange={e => setDepartment(e.target.value)}>
+                <option value="">Choose a department</option>
+                <option value="production">Production</option>
+                <option value="warehouse">Warehouse</option>
+              </select>
             </div>
             <div className="flex mb-1">
               <input 
@@ -124,21 +134,21 @@ const CreateNewUserPage = () => {
                 onChange={e => setPosition(e.target.value)}
                 placeholder="Position"
               />
-              <input 
-                type="text" 
+              <DatePicker
                 className="border-2 rounded px-1 w-48 h-9"
-                value={startingDate}
-                onChange={e => setStartingDate(e.target.value)}
-                placeholder="Starting Date"
+                selected={startingDate}
+                onChange={(date) => setStartingDate(date)}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Starting Date"
               />
             </div>
             <div className="flex mb-1">
-              <input 
-                type="text" 
+              <DatePicker
                 className="border-2 rounded px-1 w-48 h-9"
-                value={dob}
-                onChange={e => setDob(e.target.value)}
-                placeholder="Date of Birth"
+                selected={dob}
+                onChange={(date) => setDob(date)}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Date of Birth"
               />
               <input 
                 type="text" 
@@ -175,11 +185,6 @@ const CreateNewUserPage = () => {
       </Link>
     </div>
   )
-
-
-
-  
-  
 }
 
 export default CreateNewUserPage

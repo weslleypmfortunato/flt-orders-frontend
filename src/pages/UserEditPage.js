@@ -4,6 +4,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const UserEditPage = () => {
   const [name, setName] = useState('')
@@ -43,15 +45,19 @@ const UserEditPage = () => {
         const {
           name, level, password, department, comments, dob, phoneNumber, position, startingDate, emergencyContact
         } = response.data
+
+        const startDate = new Date(startingDate)
+        const dateOfBirth = new Date(dob)
+
         setName(name)
         setLevel(level)
         setPassword(password)
         setDepartment(department)
         setComments(comments)
-        setDob(dob)
+        setDob(dateOfBirth)
         setPhoneNumber(phoneNumber)
         setPosition(position)
-        setStartingDate(startingDate)
+        setStartingDate(startDate)
         setEmergencyContact(emergencyContact)
         setLoading(false)
       }).catch (error => {
@@ -100,14 +106,18 @@ const UserEditPage = () => {
                   onChange={e => setName(e.target.value)}
                   placeholder="Name"
                 />
-                <input 
-                  type="text" 
-                  className="border-2 rounded px-1 w-48 h-9"
-                  required
+                <select
+                  className={`border-2 rounded px-1 w-48 h-9 ${
+                  level === "admin" || level === "user"
+                    ? "text-black"
+                    : "text-gray-400"
+                }`}
                   value={level}
-                  onChange={e => setLevel(e.target.value)}
-                  placeholder="Level (admin or user)"
-                />
+                  onChange={e => setLevel(e.target.value)}>
+                  <option value="">Choose an user level</option>
+                  <option value="admin">Administrator</option>
+                  <option value="user">User</option>
+                </select>
               </div>
               <div className="flex mb-1">
                 <input 
@@ -116,16 +126,20 @@ const UserEditPage = () => {
                   disabled
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="Password"
+                  placeholder="Password cannot be updated"
                 />
-                <input 
-                  type="text" 
-                  className="border-2 rounded px-1 w-48 h-9"
-                  required
+                <select
+                  className={`border-2 rounded px-1 w-48 h-9 ${
+                  department === "production" || department === "warehouse"
+                    ? "text-black"
+                    : "text-gray-400"
+                }`}
                   value={department}
-                  onChange={e => setDepartment(e.target.value)}
-                  placeholder="Department"
-                />
+                  onChange={e => setDepartment(e.target.value)}>
+                  <option value="">Choose a department</option>
+                  <option value="production">Production</option>
+                  <option value="warehouse">Warehouse</option>
+                </select>
               </div>
               <div className="flex mb-1">
                 <input 
@@ -136,21 +150,21 @@ const UserEditPage = () => {
                   onChange={e => setPosition(e.target.value)}
                   placeholder="Position"
                 />
-                <input 
-                  type="text" 
+                <DatePicker
                   className="border-2 rounded px-1 w-48 h-9"
-                  value={startingDate}
-                  onChange={e => setStartingDate(e.target.value)}
-                  placeholder="Starting Date"
+                  selected={startingDate}
+                  onChange={(date) => setStartingDate(date)}
+                  dateFormat="yyyy-MM-dd"
+                  placeholderText="Starting Date"
                 />
               </div>
               <div className="flex mb-1">
-                <input 
-                  type="text" 
+                <DatePicker
                   className="border-2 rounded px-1 w-48 h-9"
-                  value={dob}
-                  onChange={e => setDob(e.target.value)}
-                  placeholder="Date of Birth"
+                  selected={dob}
+                  onChange={(date) => setDob(date)}
+                  dateFormat="yyyy-MM-dd"
+                  placeholderText="Date of Birth"
                 />
                 <input 
                   type="text" 
