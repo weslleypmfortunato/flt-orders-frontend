@@ -31,5 +31,3 @@ function App() {
 }
 
 export default App;
-
-// Em ordens, adicionar um status com um select **
