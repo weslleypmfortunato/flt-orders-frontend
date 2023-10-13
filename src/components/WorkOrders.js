@@ -33,13 +33,17 @@ const WorkOrdersList = () => {
 
   const deleteOrder = (id) => {
     axios.delete(`${process.env.REACT_APP_API_URL}/order/${id}`, {headers})
-      .then(setRefresh(!refresh))
+      .then(() => {
+        setRefresh(prev => !prev)
+      })
       .catch(error => console.log(error))
   }
 
   const deleteShortage = (id) => {
     axios.delete(`${process.env.REACT_APP_API_URL}/shortage/${id}`, {headers})
-      .then(setRefresh(!refresh))
+      .then(() => {
+        setRefresh(prev => !prev)
+      })
       .catch(error => console.log(error))
   }
 
@@ -165,7 +169,7 @@ const WorkOrdersList = () => {
         <Link to='/shortages/new'>
           <button
             type="button"
-            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-2xl shadow-blue-900">
+            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-2 mb-5 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-2xl shadow-blue-900">
             Add New Shortage
           </button>
         </Link>
