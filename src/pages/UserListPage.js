@@ -58,7 +58,7 @@ const UserListPage = () => {
       <Link to='/auth/sign-up/user'>
           <button
             type="button"
-            className="border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-4 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-2xl shadow-blue-900">
+            className={`border-1 rounded text-lg px-2 bg-blue-500 text-white font-semibold mt-4 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-2xl shadow-blue-900 ${loggedInUser.user.level !=="admin" && "hidden"}`}>
             Add New User
           </button>
         </Link>
@@ -84,7 +84,7 @@ const UserListPage = () => {
                       <td className="boder-0">
                         <button
                           onClick={() => deleteUser(user._id)}
-                          className="text-red-400 border-black ml-0.5 transition duration-500 transform hover:scale-125 hover:text-red-600">
+                          className={`text-red-400 border-black ml-0.5 transition duration-500 transform hover:scale-125 hover:text-red-600 ${loggedInUser.user.level !=="admin" && "hidden"}`}>
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
                       </td>

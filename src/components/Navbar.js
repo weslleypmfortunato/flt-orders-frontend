@@ -6,6 +6,8 @@ import flt from '../images/flt.png'
 const Navbar = props => {
   const [employee] = useState('')
 
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
+
   const {logout} = useContext(AuthContext)
 
   return (

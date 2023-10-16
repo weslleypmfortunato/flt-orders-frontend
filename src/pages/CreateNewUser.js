@@ -92,7 +92,7 @@ const CreateNewUserPage = () => {
               />
               <select
                 className={`border-2 rounded px-1 w-48 h-9 ${
-                level === "admin" || level === "user"
+                level === "admin" || level === "user" || level === "organizer"
                   ? "text-black"
                   : "text-gray-400"
               }`}
@@ -101,12 +101,13 @@ const CreateNewUserPage = () => {
                 onChange={e => setLevel(e.target.value)}>
                 <option value="">Choose an user level</option>
                 <option value="admin">Administrator</option>
+                <option value="organizer">Organizer</option>
                 <option value="user">User</option>
               </select>
             </div>
             <div className="flex mb-1">
               <input 
-                type="text" 
+                type="password" 
                 className="border-2 rounded px-1 w-48 h-9"
                 required
                 value={password}

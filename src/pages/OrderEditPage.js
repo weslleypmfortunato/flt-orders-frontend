@@ -89,7 +89,8 @@ const OrderEditPage = () => {
                 <div className="flex mb-1">
                   <input
                     type="text"
-                    className="border-2 rounded px-1 w-48 h-9"
+                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                    disabled={loggedInUser.user.level === "user"}
                     required
                     value={workOrderNumber}
                     onChange={e => setWorkOrderNumber(e.target.value)}
@@ -97,7 +98,8 @@ const OrderEditPage = () => {
                   />
                   <input
                     type="text"
-                    className="border-2 rounded px-1 w-48 h-9"
+                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                    disabled={loggedInUser.user.level === "user"}
                     required
                     value={productName}
                     onChange={e => setProductName(e.target.value)}
@@ -109,7 +111,8 @@ const OrderEditPage = () => {
                 <div className="flex mb-1">
                   <input
                     type="text"
-                    className="border-2 rounded px-1 w-48 h-9"
+                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                    disabled={loggedInUser.user.level === "user"}
                     required
                     value={productDescription}
                     onChange={e => setProductDescription(e.target.value)}
@@ -117,7 +120,8 @@ const OrderEditPage = () => {
                   />
                   <input
                     type="number"
-                    className="border-2 rounded px-1 w-48 h-9"
+                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                    disabled={loggedInUser.user.level === "user"}
                     required
                     value={orderQty}
                     onChange={e => setOrderQty(e.target.value)}
@@ -129,7 +133,8 @@ const OrderEditPage = () => {
                 <div className="flex mb-1">
                   <input
                     type="number"
-                    className="border-2 rounded px-1 w-48 h-9"
+                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                    disabled={loggedInUser.user.level === "user"}
                     required
                     value={priority}
                     onChange={e => setPriority(e.target.value)}
