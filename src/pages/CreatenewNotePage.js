@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
 import Navbar from "../components/Navbar";
@@ -9,6 +9,8 @@ const CreateNewNote = () => {
   const [notes, setNotes] = useState([])
   const [information, setInformation] = useState('')
   const [refresh, setRefresh] = useState(true)
+
+  const navigate = useNavigate()
 
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
 
@@ -36,6 +38,7 @@ const CreateNewNote = () => {
 
     axios.post(`${process.env.REACT_APP_API_URL}/notice/new`, newNote, { headers })
       .then(response => {
+        navigate('/home')
         if (response.status === 201) {
           setRefresh(!refresh)
           Swal.fire({
