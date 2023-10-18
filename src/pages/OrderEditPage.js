@@ -12,6 +12,7 @@ const OrderEditPage = () => {
   const [orderQty, setOrderQty] = useState('')
   const [priority, setPriority] = useState('')
   const [owner, setOwner] = useState('')
+  const [status, setStatus] = useState('')
   const [remarks, setRemarks] = useState('')
   const [loading, setLoading] = useState(true)
 
@@ -34,11 +35,15 @@ const OrderEditPage = () => {
     })
   }
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/order/${orderId}`, { headers })
       .then(response => {
         const {
-          workOrderNumber, productName, productDescription, orderQty, priority, owner, remarks
+          workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks
         } = response.data
         setWorkOrderNumber(workOrderNumber)
         setProductName(productName)
@@ -46,6 +51,7 @@ const OrderEditPage = () => {
         setOrderQty(orderQty)
         setPriority(priority)
         setOwner(owner)
+        setStatus(status)
         setRemarks(remarks)
         setLoading(false)
       }).catch (error => {
@@ -59,7 +65,7 @@ const OrderEditPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const editedOrder = {workOrderNumber, productName, productDescription, orderQty, priority, owner, remarks}
+    const editedOrder = {workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks}
 
     axios.put(`${process.env.REACT_APP_API_URL}/order/edit/${orderId}`, editedOrder)
       .then(response => {
@@ -101,7 +107,7 @@ const OrderEditPage = () => {
                     className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
                     disabled={loggedInUser.user.level === "user"}
                     required
-                    value={productName}
+                    value={productName.toUpperCase()}
                     onChange={e => setProductName(e.target.value)}
                     placeholder="Product Name"
                   />
@@ -114,18 +120,17 @@ const OrderEditPage = () => {
                     className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
                     disabled={loggedInUser.user.level === "user"}
                     required
-                    value={productDescription}
+                    value={productDescription.toLocaleUpperCase()}
                     onChange={e => setProductDescription(e.target.value)}
                     placeholder="Work Order Description"
                   />
                   <input
-                    type="number"
-                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
-                    disabled={loggedInUser.user.level === "user"}
+                    type="text"
+                    className="border-2 rounded px-1 w-48 h-9"
                     required
-                    value={orderQty}
-                    onChange={e => setOrderQty(e.target.value)}
-                    placeholder="Order Quantity"
+                    value={capitalizeFirstLetter(owner)}
+                    onChange={e => setOwner(e.target.value)}
+                    placeholder="Owner"
                   />
                 </div>
               </div>
@@ -133,27 +138,37 @@ const OrderEditPage = () => {
                 <div className="flex mb-1">
                   <input
                     type="number"
-                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                    className={`border-2 rounded px-1 w-20 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
                     disabled={loggedInUser.user.level === "user"}
-                    required
                     value={priority}
                     onChange={e => setPriority(e.target.value)}
-                    placeholder="Priority(must be a number)"
+                    placeholder="Priority"
                   />
                   <input
-                    type="text"
-                    className="border-2 rounded px-1 w-48 h-9"
+                    type="number"
+                    className={`border-2 rounded px-1 w-24 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                    disabled={loggedInUser.user.level === "user"}
                     required
-                    value={owner}
-                    onChange={e => setOwner(e.target.value)}
-                    placeholder="Owner"
+                    value={orderQty}
+                    onChange={e => setOrderQty(e.target.value)}
+                    placeholder="Order Quantity"
                   />
+                  <select 
+                    className="border-2 rounded px-1 w-52 h-9"
+                    value={status}
+                    onChange={e => setStatus(e.target.value)}>
+                    <option value="">Status</option>
+                    <option value="In Progress"> In Progress</option>
+                    <option value="Partially Completed">Partially Completed</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Missing Parts">Missing Parts</option>
+                  </select>
                 </div>
               </div>
               <input
                 type="text"
                 className="border-2 rounded px-1 w-96 h-9"
-                value={remarks}
+                value={capitalizeFirstLetter(remarks)}
                 onChange={e => setRemarks(e.target.value)}
                 placeholder="Remarks"
               />

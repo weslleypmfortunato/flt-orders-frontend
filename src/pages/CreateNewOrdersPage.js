@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
 import Navbar from "../components/Navbar";
@@ -13,8 +13,11 @@ const CreateNewOrdersPage = () => {
   const [orderQty, setOrderQty] = useState('')
   const [priority, setPriority] = useState('')
   const [owner, setOwner] = useState('')
+  const [status, setStatus] = useState('')
   const [remarks, setRemarks] = useState('')
   const [refresh, setRefresh] = useState(true)
+
+  const navigate = useNavigate()
 
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
 
@@ -35,7 +38,7 @@ const CreateNewOrdersPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, remarks }
+    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status,remarks }
 
     setOrders([...orders, newOrder])
     setWorkOrderNumber('')
@@ -44,10 +47,12 @@ const CreateNewOrdersPage = () => {
     setOrderQty('')
     setPriority('')
     setOwner('')
+    setStatus('')
     setRemarks('')
 
     axios.post(`${process.env.REACT_APP_API_URL}/orders/new`, newOrder, { headers })
       .then(response => {
+        navigate('/home')
         if (response.status === 201) {
           setRefresh(!refresh)
           Swal.fire({
@@ -98,31 +103,46 @@ const CreateNewOrdersPage = () => {
                 placeholder="Work Order Description"
               />
               <input
-                type="number"
+                type="text"
                 className="border-2 rounded px-1 w-48 h-9"
-                required
-                value={orderQty}
-                onChange={e => setOrderQty(e.target.value)}
-                placeholder="Order Quantity"
+                value={owner}
+                onChange={e => setOwner(e.target.value)}
+                placeholder="Owner"
               />
             </div>
             <div className="flex mb-1">
               <input
                 type="number"
-                className="border-2 rounded px-1 w-48 h-9"
-                required
+                className="border-2 rounded px-1 w-20 h-9"
                 value={priority}
                 onChange={e => setPriority(e.target.value)}
                 placeholder="Priority"
               />
               <input
-                type="text"
-                className="border-2 rounded px-1 w-48 h-9"
+                type="number"
+                className="border-2 rounded px-1 w-24 h-9"
                 required
-                value={owner}
-                onChange={e => setOwner(e.target.value)}
-                placeholder="Owner"
+                value={orderQty}
+                onChange={e => setOrderQty(e.target.value)}
+                placeholder="Quantity"
               />
+              {/* <input
+                type="text"
+                className="border-2 rounded px-1 w-52 h-9"
+                value={status}
+                onChange={e => setStatus(e.target.value)}
+                placeholder="Status"
+              /> */}
+              <select 
+                className="border-2 rounded px-1 w-52 h-9"
+                value={status}
+                onChange={e => setStatus(e.target.value)}>
+                <option value="">Status</option>
+                <option value="In Progress"> In Progress</option>
+                <option value="Partially Completed">Partially Completed</option>
+                <option value="Completed">Completed</option>
+                <option value="Missing Parts">Missing Parts</option>
+              </select>
             </div>
             <input 
               type="text" 
