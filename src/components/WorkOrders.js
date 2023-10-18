@@ -94,8 +94,8 @@ const WorkOrdersList = () => {
               </thead>
               <tbody>
                 {orders.map((order) => (
-                  <tr key={order._id} className={`hover:bg-blue-100 ${order.status === "In Progress" ? "bg-orange-100" : ""}`}>
-                    <td className="text-blue-800 border border-gray-900 text-sm">{order.priority}</td>
+                  <tr key={order._id} className="hover:bg-blue-100">
+                  <td className={`border border-gray-900 w-16 px-1 text-sm ${order.priority === 1000 ? "text-transparent" : "text-blue-800"}`}>{order.priority}</td>
                     <td className="text-blue-800 border border-gray-900 text-sm"><Link to={`/order/edit/${order._id}`} className="text-blue-800">{order.workOrderNumber}</Link></td>
                     <td className="text-blue-800 border border-gray-900 text-sm">{order.productName.toUpperCase()}</td>
                     <td className="text-blue-800 border border-gray-900 w-20 text-sm">{order.productDescription.toUpperCase()}</td>

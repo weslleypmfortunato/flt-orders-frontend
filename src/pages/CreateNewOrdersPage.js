@@ -126,13 +126,6 @@ const CreateNewOrdersPage = () => {
                 onChange={e => setOrderQty(e.target.value)}
                 placeholder="Quantity"
               />
-              {/* <input
-                type="text"
-                className="border-2 rounded px-1 w-52 h-9"
-                value={status}
-                onChange={e => setStatus(e.target.value)}
-                placeholder="Status"
-              /> */}
               <select 
                 className="border-2 rounded px-1 w-52 h-9"
                 value={status}
