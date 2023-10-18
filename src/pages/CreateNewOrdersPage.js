@@ -11,7 +11,7 @@ const CreateNewOrdersPage = () => {
   const [productName, setProductName] = useState('')
   const [productDescription, setProductDescription] = useState('')
   const [orderQty, setOrderQty] = useState('')
-  const [priority, setPriority] = useState('')
+  const [priority, setPriority] = useState(100)
   const [owner, setOwner] = useState('')
   const [status, setStatus] = useState('')
   const [remarks, setRemarks] = useState('')

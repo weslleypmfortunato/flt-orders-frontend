@@ -93,85 +93,108 @@ const OrderEditPage = () => {
             <div className="flex flex-col items-center">
               <div>
                 <div className="flex mb-1">
-                  <input
-                    type="text"
-                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
-                    disabled={loggedInUser.user.level === "user"}
-                    required
-                    value={workOrderNumber}
-                    onChange={e => setWorkOrderNumber(e.target.value)}
-                    placeholder="Work Order Number"
-                  />
-                  <input
-                    type="text"
-                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
-                    disabled={loggedInUser.user.level === "user"}
-                    required
-                    value={productName.toUpperCase()}
-                    onChange={e => setProductName(e.target.value)}
-                    placeholder="Product Name"
-                  />
+                  <div className="flex flex-col items-start mt-4">
+                    <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Work Order</label>
+                    <input
+                      type="text"
+                      className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                      disabled={loggedInUser.user.level === "user"}
+                      required
+                      value={workOrderNumber}
+                      onChange={e => setWorkOrderNumber(e.target.value)}
+                      placeholder="Work Order Number"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start mt-4">
+                    <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Product Name</label>
+                    <input
+                      type="text"
+                      className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                      disabled={loggedInUser.user.level === "user"}
+                      required
+                      value={productName.toUpperCase()}
+                      onChange={e => setProductName(e.target.value)}
+                      placeholder="Product Name"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
                 <div className="flex mb-1">
-                  <input
-                    type="text"
-                    className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
-                    disabled={loggedInUser.user.level === "user"}
-                    required
-                    value={productDescription.toLocaleUpperCase()}
-                    onChange={e => setProductDescription(e.target.value)}
-                    placeholder="Work Order Description"
-                  />
-                  <input
-                    type="text"
-                    className="border-2 rounded px-1 w-48 h-9"
-                    required
-                    value={capitalizeFirstLetter(owner)}
-                    onChange={e => setOwner(e.target.value)}
-                    placeholder="Owner"
-                  />
+                  <div className="flex flex-col items-start mt-2">
+                    <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Order Description</label>
+                    <input
+                      type="text"
+                      className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                      disabled={loggedInUser.user.level === "user"}
+                      required
+                      value={productDescription.toLocaleUpperCase()}
+                      onChange={e => setProductDescription(e.target.value)}
+                      placeholder="Work Order Description"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start mt-2">
+                    <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Owner</label>
+                    <input
+                      type="text"
+                      className="border-2 rounded px-1 w-48 h-9"
+                      value={capitalizeFirstLetter(owner)}
+                      onChange={e => setOwner(e.target.value)}
+                      placeholder="Owner"
+                    />
+                  </div>
                 </div>
               </div>
             <div>
                 <div className="flex mb-1">
-                  <input
-                    type="number"
-                    className={`border-2 rounded px-1 w-20 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
-                    disabled={loggedInUser.user.level === "user"}
-                    value={priority}
-                    onChange={e => setPriority(e.target.value)}
-                    placeholder="Priority"
-                  />
-                  <input
-                    type="number"
-                    className={`border-2 rounded px-1 w-24 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
-                    disabled={loggedInUser.user.level === "user"}
-                    required
-                    value={orderQty}
-                    onChange={e => setOrderQty(e.target.value)}
-                    placeholder="Order Quantity"
-                  />
-                  <select 
-                    className="border-2 rounded px-1 w-52 h-9"
-                    value={status}
-                    onChange={e => setStatus(e.target.value)}>
-                    <option value="">Status</option>
-                    <option value="In Progress"> In Progress</option>
-                    <option value="Partially Completed">Partially Completed</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Missing Parts">Missing Parts</option>
-                  </select>
+                  <div className="flex flex-col items-start mt-2">
+                    <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Priority</label>
+                    <input
+                      type="number"
+                      className={`border-2 rounded px-1 w-20 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                      disabled={loggedInUser.user.level === "user"}
+                      value={priority}
+                      onChange={e => setPriority(e.target.value)}
+                      placeholder="Priority"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start mt-2">
+                    <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Qty</label>
+                    <input
+                      type="number"
+                      className={`border-2 rounded px-1 w-24 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                      disabled={loggedInUser.user.level === "user"}
+                      required
+                      value={orderQty}
+                      onChange={e => setOrderQty(e.target.value)}
+                      placeholder="Order Quantity"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start mt-2">
+                    <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Status</label>
+                    <select
+                      className="border-2 rounded px-1 w-52 h-9"
+                      value={status}
+                      onChange={e => setStatus(e.target.value)}>
+                      <option value="">Status</option>
+                      <option value="In Progress"> In Progress</option>
+                      <option value="Partially Completed">Partially Completed</option>
+                      <option value="Completed">Completed</option>
+                      <option value="Missing Parts">Missing Parts</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-              <input
-                type="text"
-                className="border-2 rounded px-1 w-96 h-9"
-                value={capitalizeFirstLetter(remarks)}
-                onChange={e => setRemarks(e.target.value)}
-                placeholder="Remarks"
-              />
+              <div className="flex flex-col items-start mt-2">
+                <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Status</label>
+                <input
+                  type="text"
+                  className="border-2 rounded px-1 w-96 h-9"
+                  value={capitalizeFirstLetter(remarks)}
+                  onChange={e => setRemarks(e.target.value)}
+                  placeholder="Remarks"
+                />
+              </div>
             </div>
             <button
               type="submit"
