@@ -79,7 +79,7 @@ const NoticesList = () => {
       <Link to='/notice/new'>
         <button
           type="button"
-          className={`border-1 border-blue-500 rounded text-lg px-2 hover:bg-blue-500 hover:text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900 ${loggedInUser.user.level !=="admin" && "hidden"}`}>
+          className={`border-1 mb-4 border-blue-500 rounded text-lg px-2 hover:bg-blue-500 hover:text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900 ${loggedInUser.user.level !=="admin" && "hidden"}`}>
           Add New Note
         </button>
       </Link>

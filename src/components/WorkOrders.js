@@ -102,7 +102,7 @@ const WorkOrdersList = () => {
                     <td className="text-blue-800 border border-gray-900 text-sm">{order.orderQty}</td>
                     <td className="text-blue-800 border border-gray-900 text-sm">{capitalizeFirstLetter(order.owner)}</td>
                     <td 
-                      className={`text-blue-800 border border-gray-900 text-sm ${(order.status ==="In Progress" && "bg-yellow-500 text-white font-semibold px-0.5") || (order.status ==="Partially Completed" && "bg-purple-600 text-white font-semibold px-0.5") || (order.status ==="Completed" && "bg-green-500 text-white font-semibold px-0.5") || (order.status ==="Missing Parts" && "bg-pink-400 text-white font-semibold px-0.5")}`}>
+                      className={`text-blue-800 border border-gray-900 text-sm ${(order.status ==="In Progress" && "bg-yellow-500 text-white font-semibold px-0.5") || (order.status ==="Partially Completed" && "bg-purple-600 text-white font-semibold px-0.5") || (order.status ==="Completed" && "bg-green-500 text-white font-semibold px-0.5") || (order.status ==="Missing Parts" && "bg-pink-400 text-white font-semibold px-0.5") || (order.status ==="Expedite" && "bg-gradient-to-r from-gray-200 to-red-600 text-white font-bold px-1 text-base italic")}`}>
                         {order.status ? capitalizeFirstLetter(order.status) : ""}
                     </td>
                     <td className="text-blue-800 border border-gray-900 text-left pl-1 text-sm">{capitalizeFirstLetter(order.remarks)}</td>
@@ -178,7 +178,7 @@ const WorkOrdersList = () => {
         <Link to='/shortages/new'>
           <button
             type="button"
-            className={`border-1 border-blue-500 rounded text-lg px-2 hover:bg-blue-500 hover:text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900 ${loggedInUser.user.level ==="user" && "hidden"}`}>
+            className={`border-1 mb-4 border-blue-500 rounded text-lg px-2 hover:bg-blue-500 hover:text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900 ${loggedInUser.user.level ==="user" && "hidden"}`}>
             Add New Shortage
           </button>
         </Link>

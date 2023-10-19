@@ -38,7 +38,7 @@ const CreateNewOrdersPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status,remarks }
+    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks }
 
     setOrders([...orders, newOrder])
     setWorkOrderNumber('')
@@ -135,6 +135,7 @@ const CreateNewOrdersPage = () => {
                 <option value="Partially Completed">Partially Completed</option>
                 <option value="Completed">Completed</option>
                 <option value="Missing Parts">Missing Parts</option>
+                <option value="Expedite">Expedite</option>
               </select>
             </div>
             <input 

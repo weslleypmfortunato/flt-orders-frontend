@@ -181,6 +181,7 @@ const OrderEditPage = () => {
                       <option value="Partially Completed">Partially Completed</option>
                       <option value="Completed">Completed</option>
                       <option value="Missing Parts">Missing Parts</option>
+                      <option value="Expedite">Expedite</option>
                     </select>
                   </div>
                 </div>
