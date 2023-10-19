@@ -102,7 +102,7 @@ const WorkOrdersList = () => {
                     <td className="text-blue-800 border border-gray-900 text-sm">{order.orderQty}</td>
                     <td className="text-blue-800 border border-gray-900 text-sm">{capitalizeFirstLetter(order.owner)}</td>
                     <td 
-                      className={`text-blue-800 border border-gray-900 text-sm ${(order.status ==="In Progress" && "bg-yellow-500 text-white font-semibold px-0.5") || (order.status ==="Partially Completed" && "bg-purple-600 text-white font-semibold px-0.5") || (order.status ==="Completed" && "bg-green-500 text-white font-semibold px-0.5") || (order.status ==="Missing Parts" && "bg-pink-400 text-white font-semibold px-0.5") || (order.status ==="Expedite" && "bg-gradient-to-r from-gray-200 to-red-600 text-white font-bold px-1 text-base")}`}>
+                      className={`text-blue-800 border border-gray-900 text-sm ${(order.status ==="In Progress" && "bg-yellow-500 text-white font-semibold px-0.5") || (order.status ==="Partially Completed" && "bg-purple-600 text-white font-semibold px-0.5") || (order.status ==="Completed" && "bg-green-500 text-white font-semibold px-0.5") || (order.status ==="Missing Parts" && "bg-pink-400 text-white font-semibold px-0.5") || (order.status ==="Expedite" && "bg-gradient-to-r from-gray-200 to-red-400 text-white font-bold px-1 text-base")}`}>
                         {order.status ? capitalizeFirstLetter(order.status) : ""}
                     </td>
                     <td className="text-blue-800 border border-gray-900 text-left pl-1 text-sm">{capitalizeFirstLetter(order.remarks)}</td>
