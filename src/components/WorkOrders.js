@@ -90,6 +90,7 @@ const WorkOrdersList = () => {
                   <th className="border border-gray-900 w-28 font-semibold text-sm">Owner</th>
                   <th className="border border-gray-900 w-40 font-semibold text-sm">Status</th>
                   <th className="border border-gray-900 w-96 font-semibold text-sm">Remarks</th>
+                  <th className="border border-gray-900 w-28 font-semibold text-sm">Order Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -106,6 +107,9 @@ const WorkOrdersList = () => {
                         {order.status ? capitalizeFirstLetter(order.status) : ""}
                     </td>
                     <td className="text-blue-800 border border-gray-900 text-left pl-1 text-sm">{capitalizeFirstLetter(order.remarks)}</td>
+                    <td className="text-blue-800 border border-gray-900 pl-1 text-sm text-center">
+                      {order.orderLink ? <a href={order.orderLink} target="_blank" rel="noopener noreferrer">WO Details</a> : ""}
+                    </td>
                     <td className="border-0">
                       <button
                         onClick={() => deleteOrder(order._id)}

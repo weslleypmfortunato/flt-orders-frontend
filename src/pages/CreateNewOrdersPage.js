@@ -15,6 +15,8 @@ const CreateNewOrdersPage = () => {
   const [owner, setOwner] = useState('')
   const [status, setStatus] = useState('')
   const [remarks, setRemarks] = useState('')
+  const [deleteStatus, setDeleteStatus] = useState(false)
+  const [orderLink, setOrderLink] = useState('')
   const [refresh, setRefresh] = useState(true)
 
   const navigate = useNavigate()
@@ -38,7 +40,7 @@ const CreateNewOrdersPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks }
+    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink }
 
     setOrders([...orders, newOrder])
     setWorkOrderNumber('')
@@ -49,6 +51,8 @@ const CreateNewOrdersPage = () => {
     setOwner('')
     setStatus('')
     setRemarks('')
+    setDeleteStatus('')
+    setOrderLink('')
 
     axios.post(`${process.env.REACT_APP_API_URL}/orders/new`, newOrder, { headers })
       .then(response => {
@@ -138,6 +142,13 @@ const CreateNewOrdersPage = () => {
                 <option value="Expedite">Expedite</option>
               </select>
             </div>
+            <input 
+              type="text" 
+              className="border-2 rounded px-1 w-96 h-9 mb-1"
+              value={orderLink}
+              onChange={e => setOrderLink(e.target.value)}
+              placeholder="Order Link"
+            />
             <input 
               type="text" 
               className="border-2 rounded px-1 w-96 h-9"

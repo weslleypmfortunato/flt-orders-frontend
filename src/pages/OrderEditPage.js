@@ -14,6 +14,8 @@ const OrderEditPage = () => {
   const [owner, setOwner] = useState('')
   const [status, setStatus] = useState('')
   const [remarks, setRemarks] = useState('')
+  const [deleteStatus, setDeleteStatus] = useState(false)
+  const [orderLink, setOrderLink] = useState('')
   const [loading, setLoading] = useState(true)
 
   const navigate = useNavigate()
@@ -43,7 +45,7 @@ const OrderEditPage = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/order/${orderId}`, { headers })
       .then(response => {
         const {
-          workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks
+          workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink
         } = response.data
         setWorkOrderNumber(workOrderNumber)
         setProductName(productName)
@@ -53,6 +55,8 @@ const OrderEditPage = () => {
         setOwner(owner)
         setStatus(status)
         setRemarks(remarks)
+        setDeleteStatus(deleteStatus)
+        setOrderLink(orderLink)
         setLoading(false)
       }).catch (error => {
         if (error.response) {
@@ -65,7 +69,7 @@ const OrderEditPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const editedOrder = {workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks}
+    const editedOrder = {workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink}
 
     axios.put(`${process.env.REACT_APP_API_URL}/order/edit/${orderId}`, editedOrder)
       .then(response => {
@@ -187,7 +191,16 @@ const OrderEditPage = () => {
                 </div>
               </div>
               <div className="flex flex-col items-start mt-2">
-                <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Status</label>
+              <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Order Link</label>
+                <input
+                  type="text"
+                  disabled={loggedInUser.user.level === "user"}
+                  className="border-2 rounded px-1 w-96 h-9"
+                  value={orderLink}
+                  onChange={e => setOrderLink(e.target.value)}
+                  placeholder="Link"
+                />
+                <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1 mt-2">Remarks</label>
                 <input
                   type="text"
                   className="border-2 rounded px-1 w-96 h-9"

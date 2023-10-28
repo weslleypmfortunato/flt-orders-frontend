@@ -11,7 +11,7 @@ const HomePage = () => {
       <Navbar />
       <div className="flex flex-col items-center">
         <h1 className="mt-3 font-medium text-4xl mb-3 text-blue-600">
-          Welcome <span>{ loggedInUser.user.name.split(' ')[0] }</span>!
+          Welcome <span>{ loggedInUser.user.name ==="Administrator" ? "Team" : loggedInUser.user.name.split(' ')[0] }</span>!
         </h1>
         <NoticesList />
         <WorkOrdersList />
