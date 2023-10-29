@@ -30,7 +30,7 @@ const CompletedWorkOrdersPage = () => {
   }
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/orders`, { headers })
+    axios.get(`${process.env.REACT_APP_API_URL}/completed/orders`, { headers })
       .then(response => {
         const completedOrders = response.data.filter(order => order.deleteStatus === true)
         setCompletedOrders(completedOrders)
