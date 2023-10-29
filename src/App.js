@@ -13,6 +13,7 @@ import UserEditPage from './pages/UserEditPage';
 import IsLogged from './components/IsLogged';
 import CreateNewNote from './pages/CreatenewNotePage';
 import NoteEditPage from './pages/NoteEditPage';
+import CompletedWorkOrdersPage from './pages/CompletedWorkOrders';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/' element={ <LoginPage />}></Route>
         <Route path='/home' element={ <IsLogged><HomePage /></IsLogged> }></Route>
         <Route path='/orders/new' element={ <IsLogged roles={["admin", "organizer"]}><CreateNewOrdersPage /></IsLogged> }></Route>
+        <Route path='/completed-orders' element={ <IsLogged roles={["admin", "organizer", "user"]}> <CompletedWorkOrdersPage /> </IsLogged> }></Route>
         <Route path='/shortages/new' element={ <IsLogged roles={["admin", "organizer"]}><CreateNewShortagesPage /></IsLogged> }></Route>
         <Route path='/order/edit/:orderId' element={ <IsLogged><OrderEditPage /></IsLogged> }></Route>
         <Route path='/shortage/edit/:shortageId' element={ <IsLogged roles={["admin", "organizer"]}><ShortageEditPage /></IsLogged> }></Route>

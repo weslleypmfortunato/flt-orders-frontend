@@ -31,12 +31,24 @@ const WorkOrdersList = () => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const deleteOrder = (id) => {
-    axios.delete(`${process.env.REACT_APP_API_URL}/order/${id}`, {headers})
+  // const deleteOrder = (id) => {
+  //   axios.delete(`${process.env.REACT_APP_API_URL}/order/${id}`, {headers})
+  //     .then(() => {
+  //       setRefresh(prev => !prev)
+  //     })
+  //     .catch(error => console.log(error))
+  // }
+
+  const updateDeleteStatus = (id, deleteStatus) => {
+    axios.put(`${process.env.REACT_APP_API_URL}/order/updateDeleteStatus/${id}`, { deleteStatus }, { headers })
       .then(() => {
         setRefresh(prev => !prev)
       })
       .catch(error => console.log(error))
+  }
+
+  const handleDeleteOrder = (id) => {
+    updateDeleteStatus(id, true)
   }
 
   const deleteShortage = (id) => {
@@ -50,7 +62,8 @@ const WorkOrdersList = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/orders`, { headers })
       .then(response => {
-        setOrders(response.data)
+        const orders = response.data.filter(order => order.deleteStatus === false)
+        setOrders(orders)
       }).catch (error => {
         if (error.response) {
           messageError(error.response.data.message)
@@ -77,7 +90,7 @@ const WorkOrdersList = () => {
     <div className="flex flex-col items-center mt-2 w-full px-2">
       <h1 className="mb-2 text-2xl font-semibold">Work Orders List</h1>
       <div>
-        {orders.length > 0 ? (
+        {orders.length > 0 && orders.filter(order => order.deleteStatus === false).length > 0 ? (
           <div className="w-full">
             <table className="mb-0.5">
               <thead>
@@ -96,7 +109,7 @@ const WorkOrdersList = () => {
               <tbody>
                 {orders.map((order) => (
                   <tr key={order._id} className="hover:bg-blue-100">
-                  <td className={`border border-gray-900 w-16 px-1 text-sm ${order.priority === 100 ? "text-transparent" : "text-blue-800"}`}>{order.priority}</td>
+                    <td className={`border border-gray-900 w-16 px-1 text-sm ${order.priority === 100 ? "text-transparent" : "text-blue-800"}`}>{order.priority}</td>
                     <td className="text-blue-800 border border-gray-900 text-sm"><Link to={`/order/edit/${order._id}`} className="text-blue-800">{order.workOrderNumber}</Link></td>
                     <td className="text-blue-800 border border-gray-900 text-sm">{order.productName.toUpperCase()}</td>
                     <td className="text-blue-800 border border-gray-900 w-20 text-sm">{order.productDescription.toUpperCase()}</td>
@@ -111,10 +124,17 @@ const WorkOrdersList = () => {
                       {order.orderLink ? <a href={order.orderLink} target="_blank" rel="noopener noreferrer">WO Details</a> : ""}
                     </td>
                     <td className="border-0">
-                      <button
+                      {/* <button
                         onClick={() => deleteOrder(order._id)}
                         className={`text-red-400 border-black ml-0.5 transition duration-500 transform hover:scale-125 hover:text-red-600 ${
                           loggedInUser.user.level ==="user" && "hidden"}`}>
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button> */}
+
+                      <button
+                        onClick={() => handleDeleteOrder(order._id)} // Chama a nova função handleDeleteOrder
+                        className={`text-red-400 border-black ml-0.5 transition duration-500 transform hover:scale-125 hover:text-red-600 ${
+                          loggedInUser.user.level === "user" && "hidden"}`}>
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
                     </td>
