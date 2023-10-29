@@ -55,7 +55,6 @@ const CompletedWorkOrdersPage = () => {
               <table className="mb-0.5">
                 <thead>
                   <tr>
-                    <th className="border border-gray-900 w-16 px-1 font-semibold text-sm">Priority</th>
                     <th className="border border-gray-900 w-24 font-semibold text-sm">Work Order</th>
                     <th className="border border-gray-900 px-1 font-semibold text-sm">Product</th>
                     <th className="border border-gray-900 w-64 font-semibold text-sm">Description</th>
@@ -69,7 +68,6 @@ const CompletedWorkOrdersPage = () => {
                 <tbody>
                   {completedOrders.map((completedOrder) => (
                     <tr>
-                    <td className={`border border-gray-900 w-16 px-1 text-sm ${completedOrder.priority === 100 ? "text-transparent" : "text-blue-800"}`}>{completedOrder.priority}</td>
                       <td className="text-blue-800 border border-gray-900 text-sm"><Link to={`/order/edit/${completedOrder._id}`} className="text-blue-800">{completedOrder.workOrderNumber}</Link></td>
                       <td className="text-blue-800 border border-gray-900 text-sm">{completedOrder.productName.toUpperCase()}</td>
                       <td className="text-blue-800 border border-gray-900 w-20 text-sm">{completedOrder.productDescription.toUpperCase()}</td>
