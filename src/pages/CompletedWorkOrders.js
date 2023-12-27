@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
+import SearchBarOldOrders from "../components/SearchBarOldOrders";
 
 const CompletedWorkOrdersPage = () => {
   const [completedOrders, setCompletedOrders] = useState([])
@@ -46,8 +47,11 @@ const CompletedWorkOrdersPage = () => {
   return (
     <div>
       <Navbar />
+      <div className="flex ml-2">
+        <SearchBarOldOrders />
+      </div>
       <div className="flex flex-col items-center mt-2 w-full px-2">
-        <h1 className="mb-2 mt-3 text-2xl font-semibold">Completed Work Orders List</h1>
+        <h1 className="mb-2 mt-3 text-2xl font-semibold">Old Work Orders List</h1>
         <div>
           <h4 className="text-left text-xs text-red-600 mt-3 font-semibold">Cut-off 2023/October/30</h4>
           {completedOrders.length > 0 && completedOrders.filter(completedOrders => completedOrders.deleteStatus === true).length > 0 ? (
