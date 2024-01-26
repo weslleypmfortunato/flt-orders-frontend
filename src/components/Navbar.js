@@ -29,6 +29,9 @@ const Navbar = props => {
             <li className="mr-10">
               <Link to='/users' className="no-underline hover:underline">Users</Link>
             </li>
+            <li className="mr-10">
+              <Link to='/ncr' className="no-underline hover:underline">NCR</Link>
+            </li>
             <li>
               <Link
                 to={'/'}

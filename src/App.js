@@ -14,6 +14,9 @@ import IsLogged from './components/IsLogged';
 import CreateNewNote from './pages/CreatenewNotePage';
 import NoteEditPage from './pages/NoteEditPage';
 import CompletedWorkOrdersPage from './pages/CompletedWorkOrders';
+import CreateNewNcrPage from './pages/CreateNcrPage';
+import NcrListPage from './pages/NcrListPage';
+import PrintNcrPage from './pages/PrintNcrPage';
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
         <Route path='/user/edit/:userId' element={ <IsLogged roles={["admin"]}><UserEditPage /></IsLogged> }></Route>
         <Route path='/notice/new' element={ <IsLogged roles={["admin"]}><CreateNewNote /></IsLogged> }></Route>
         <Route path='/notice/edit/:noteId' element={ <IsLogged roles={["admin"]}> <NoteEditPage /></IsLogged> }></Route>
+        <Route path='ncr/new' element={ <IsLogged><CreateNewNcrPage /> </IsLogged>}> </Route>
+        <Route path='/ncr' element={ <IsLogged><NcrListPage /></IsLogged> }></Route>
+        <Route path='/ncr/:ncrId' element={ <IsLogged><PrintNcrPage /></IsLogged> }></Route>
       </Routes>
     </div>
   );
