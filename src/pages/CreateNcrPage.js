@@ -46,7 +46,7 @@ const CreateNewNcrPage = () => {
 
     axios.post(`${process.env.REACT_APP_API_URL}/ncr/new`, newNcr, { headers })
       .then(response => {
-        navigate('/home')
+        navigate('/ncr')
         if (response.status === 201) {
           setRefresh(!refresh)
           Swal.fire({
