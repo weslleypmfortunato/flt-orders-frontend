@@ -6,13 +6,13 @@ import warning from '../images/warning.png'
 import Navbar from "../components/Navbar";
 
 const CreateNewNcrPage = () => {
-  const [ncrs, setNcrs] = useState([])
-  const [title, setTitle] = useState('')
-  const [reference, setReference] = useState('')
-  const [creator, setCreator] = useState('')
-  const [location, setLocation] = useState('')
-  const [description, setDescription] = useState('')
-  const [refresh, setRefresh] = useState(true)
+  const [ncrs, setNcrs] = useState([]);
+  const [title, setTitle] = useState('');
+  const [reference, setReference] = useState('');
+  const [creator, setCreator] = useState('');
+  const [location, setLocation] = useState('');
+  const [descriptionLines, setDescriptionLines] = useState(['']);
+  const [refresh, setRefresh] = useState(true);
 
   const navigate = useNavigate()
 
@@ -24,7 +24,7 @@ const CreateNewNcrPage = () => {
 
   const messageError = () => {
     Swal.fire({
-      text: "Definir mensagem!",
+      text: "Error!",
       imageUrl: warning,
       imageWidth: 100,
       imageHeight: 100,
@@ -32,17 +32,23 @@ const CreateNewNcrPage = () => {
     })
   }
 
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleDescriptionChange = (e, index) => {
+    const newLines = [...descriptionLines];
+    newLines[index] = e.target.value;
+    setDescriptionLines(newLines);
+  }
 
-    const newNcr = { title, reference, creator, location, description }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    setNcrs([...ncrs, newNcr])
-    setTitle('')
-    setReference('')
-    setCreator('')
-    setLocation('')
-    setDescription('')
+    const newNcr = { title, reference, creator, location, description: descriptionLines.join('\n') };
+
+    setNcrs([...ncrs, newNcr]);
+    setTitle('');
+    setReference('');
+    setCreator('');
+    setLocation('');
+    setDescriptionLines(['']);
 
     axios.post(`${process.env.REACT_APP_API_URL}/ncr/new`, newNcr, { headers })
       .then(response => {
@@ -50,7 +56,7 @@ const CreateNewNcrPage = () => {
         if (response.status === 201) {
           setRefresh(!refresh)
           Swal.fire({
-            text: 'Order placed succesfully!',
+            text: 'NCR created succesfully!',
             imageUrl: warning,
             imageWidth: 100,
             imageHeight: 100,
@@ -110,22 +116,24 @@ const CreateNewNcrPage = () => {
               <div className="flex flex-row items-baseline border-b gap-2 mb-1">
                 <h4 className="text-lg font-semibold pl-2 mr-7">Location:</h4>
                 <input
-                type="text"
-                className="pl-2 border-b rounded-b w-full mx-2 h-8"
-                value={location}
-                onChange={e => setLocation(e.target.value)}
-                placeholder="Type here..."
+                  type="text"
+                  className="pl-2 border-b rounded-b w-full mx-2 h-8"
+                  value={location}
+                  onChange={e => setLocation(e.target.value)}
+                  placeholder="Type here..."
                 />
               </div>
-              <div className="flex flex-row items-baseline gap-2 mb-1">
-                <h4 className="text-lg font-semibold pl-2">Description:</h4>
-                <textarea
-                className="pl-2 pt-2 border-b rounded-b w-full mx-2 h-36"
-                value={description}
-                onChange={e => setDescription(e.target.value)}
-                placeholder="Type here..."
-                />
-              </div>
+              {descriptionLines.map((line, index) => (
+                <div key={index} className="flex flex-row items-baseline gap-2 mb-1">
+                  <h4 className="text-lg font-semibold pl-2">Description:</h4>
+                  <textarea
+                    className="pl-2 pt-2 border-b rounded-b w-full mx-2 h-36"
+                    value={line}
+                    onChange={(e) => handleDescriptionChange(e, index)}
+                    placeholder="Type here..."
+                  />
+                </div>
+              ))}
             </div>
 
             <div className="flex flex-col mb-1 w-3/5 border rounded mt-4">
@@ -154,4 +162,4 @@ const CreateNewNcrPage = () => {
   )
 }
 
-export default CreateNewNcrPage
+export default CreateNewNcrPage;

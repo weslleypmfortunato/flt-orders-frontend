@@ -38,6 +38,10 @@ const NcrListPage = () => {
       })
   }, [refresh])
 
+  const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
     <div className="px-5 mx-5">
     <Navbar />
@@ -55,7 +59,7 @@ const NcrListPage = () => {
           <div key={ncr._id}>
             <div>
               <Link to={`/ncr/${ncr._id}`}>
-                <p className="m-0.5">{ncr.title}</p>
+                <p className="m-0.5">{capitalizeFirstLetter(ncr.title)}</p>
               </Link>
             </div>
           </div>

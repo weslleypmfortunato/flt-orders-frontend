@@ -56,7 +56,10 @@ const PrintNcrPage = () => {
 
   return (
     <div>
-      <h1 className="mb-0 mt-3 text-2xl font-semibold">Non-Conformance Report</h1>
+      <Link to={'/ncr'}>
+        <p className="text-blue-500 underline mt-1 mb-0">Back</p>
+      </Link>
+      <h1 className="mb-0 mt-0 text-2xl font-semibold">Non-Conformance Report</h1>
       <div className="flex flex-col items-center">
         <div className="flex flex-col mb-1 w-11/12 border rounded mt-3">
           <h2 className="mb-1 mt-1 text-xl font-semibold border-b h-9">NCR Identification</h2>
@@ -81,7 +84,7 @@ const PrintNcrPage = () => {
           </div>
           <div className="flex flex-row items-baseline gap-2 mb-1">
             <h4 className="text-lg font-semibold pl-2">Description:</h4>
-            <p className="text-left">{ncr.description}</p>
+            <p className="text-left whitespace-pre-line">{ncr.description}</p>
           </div>
         </div>
         <div className="flex flex-col mb-1 w-11/12 border rounded mt-4">
@@ -98,9 +101,6 @@ const PrintNcrPage = () => {
           <QRCode value={JSON.stringify(qrCodeData)} />
         </div>
       </div>
-      <Link to={'/ncr'}>
-        <p className="text-blue-500 underline mt-3">Back</p>
-      </Link>
     </div>
   )
 }
