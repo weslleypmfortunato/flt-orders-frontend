@@ -64,7 +64,7 @@ const PrintNcrPage = () => {
         </Link>
       </div>
       <h1 className="mb-0 mt-0 text-xl font-semibold">Non-Conformance Report</h1>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-11/12">
         <div className="flex flex-col mb-1 w-11/12 border rounded mt-3">
           <h2 className="mb-1 mt-1 text-lg font-semibold border-b h-7">NCR Identification</h2>
           <div className="flex flex-row items-baseline border-b gap-2 mb-1 h-7">

@@ -10,7 +10,7 @@ const NcrEditPage = () => {
   const [reference, setReference] = useState('');
   const [creator, setCreator] = useState('');
   const [location, setLocation] = useState('');
-  const [descriptionLines, setDescriptionLines] = useState(['']);
+  const [descriptionLines, setDescriptionLines] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate()
@@ -43,42 +43,48 @@ const NcrEditPage = () => {
   }
 
   useEffect(() => {
-  axios.get(`${process.env.REACT_APP_API_URL}/ncr/${ncrId}`, { headers })
-    .then(response => {
-      const {
-        title, reference, creator, location, description
-      } = response.data;
-
-      setTitle(title);
-      setReference(reference);
-      setCreator(creator);
-      setLocation(location);
-      setDescriptionLines(description ? description.split('\n') : []);
-      setLoading(false);
-    })
-    .catch(error => {
-      if (error.response) {
-        messageError(error.response.data.message);
-      } else {
-        console.error('Request Error:', error);
-      }
-    });
-}, [ncrId]);
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    const editedNcr = {title, reference, creator, location, descriptionLines}
-
-    axios.put(`${process.env.REACT_APP_API_URL}/ncr/edit/${ncrId}`, editedNcr)
+    axios.get(`${process.env.REACT_APP_API_URL}/ncr/${ncrId}`, { headers })
       .then(response => {
-        navigate('/ncr')
-      }).catch (error => {
+        const {
+          title, reference, creator, location, description
+        } = response.data
+  
+        setTitle(title)
+        setReference(reference)
+        setCreator(creator)
+        setLocation(location)
+        setDescriptionLines(description ? description.split('\n') : ['']); 
+        setLoading(false)
+      })
+      .catch(error => {
         if (error.response) {
           messageError(error.response.data.message)
         } else {
-          console.error('Request Error', error)
+          console.error('Request Error:', error)
         }
-      })
+      });
+  }, [ncrId])
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const editedNcr = {
+      title,
+      reference,
+      creator,
+      location,
+      description: descriptionLines.join('\n'), 
+    }
+
+    axios.put(`${process.env.REACT_APP_API_URL}/ncr/edit/${ncrId}`, editedNcr)
+  .then(response => {
+    navigate('/ncr')
+  }).catch(error => {
+    if (error.response) {
+      messageError(error.response.data.message)
+    } else {
+      console.error('Request Error', error)
+    }
+  })
   }
 
   if (loading) {

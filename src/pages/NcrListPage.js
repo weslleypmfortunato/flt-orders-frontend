@@ -43,7 +43,7 @@ const NcrListPage = () => {
   }
 
   return (
-    <div className="px-5 mx-5">
+    <div>
     <Navbar />
       <h1 className="mb-4 mt-4 text-2xl font-semibold">NCR List</h1>
       <Link to='/ncr/new'>
@@ -53,7 +53,7 @@ const NcrListPage = () => {
             Add New NCR
           </button>
       </Link>
-      <div className="flex flex-col items-start ml-96">
+      <div className="flex flex-col items-start ml-96 px-5">
       {ncrs.length > 0 && ncrs.map(ncr => {
         return (
           <div key={ncr._id}>
