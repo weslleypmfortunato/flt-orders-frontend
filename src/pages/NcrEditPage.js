@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Swal from "sweetalert2";
-import warning from '../images/warning.png'
+import warning from '../images/warning.png';
 
 const NcrEditPage = () => {
-  const [title, setTitle] = useState('');
-  const [reference, setReference] = useState('');
-  const [creator, setCreator] = useState('');
-  const [location, setLocation] = useState('');
-  const [descriptionLines, setDescriptionLines] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [title, setTitle] = useState('')
+  const [reference, setReference] = useState('')
+  const [creator, setCreator] = useState('')
+  const [location, setLocation] = useState('')
+  const [description, setDescription] = useState('')
+  const [loading, setLoading] = useState(true)
 
   const navigate = useNavigate()
   const { ncrId } = useParams()
@@ -32,14 +32,8 @@ const NcrEditPage = () => {
     })
   }
 
-  const handleDescriptionChange = (e, index) => {
-    const newLines = [...descriptionLines];
-    newLines[index] = e.target.value;
-    setDescriptionLines(newLines);
-  }
-
   function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
   useEffect(() => {
@@ -48,12 +42,12 @@ const NcrEditPage = () => {
         const {
           title, reference, creator, location, description
         } = response.data
-  
+
         setTitle(title)
         setReference(reference)
         setCreator(creator)
         setLocation(location)
-        setDescriptionLines(description ? description.split('\n') : ['']); 
+        setDescription(description)
         setLoading(false)
       })
       .catch(error => {
@@ -72,19 +66,20 @@ const NcrEditPage = () => {
       reference,
       creator,
       location,
-      description: descriptionLines.join('\n'), 
+      description
     }
 
     axios.put(`${process.env.REACT_APP_API_URL}/ncr/edit/${ncrId}`, editedNcr)
-  .then(response => {
-    navigate('/ncr')
-  }).catch(error => {
-    if (error.response) {
-      messageError(error.response.data.message)
-    } else {
-      console.error('Request Error', error)
-    }
-  })
+      .then(response => {
+        navigate('/ncr')
+      })
+      .catch(error => {
+        if (error.response) {
+          messageError(error.response.data.message)
+        } else {
+          console.error('Request Error', error)
+        }
+      })
   }
 
   if (loading) {
@@ -146,17 +141,15 @@ const NcrEditPage = () => {
                   placeholder="Type here..."
                 />
               </div>
-              {descriptionLines.map((line, index) => (
-                <div key={index} className="flex flex-row items-baseline gap-2 mb-1">
-                  <h4 className="text-lg font-semibold pl-2">Description:</h4>
-                  <textarea
-                    className="pl-2 pt-2 border-b rounded-b w-full mx-2 h-36"
-                    value={line}
-                    onChange={(e) => handleDescriptionChange(e, index)}
-                    placeholder="Type here..."
-                  />
-                </div>
-              ))}
+              <div className="flex flex-row items-baseline gap-2 mb-1">
+                <h4 className="text-lg font-semibold pl-2">Description:</h4>
+                <textarea
+                  className="pl-2 pt-2 border-b rounded-b w-full mx-2 h-36"
+                  value={description}
+                  onChange={e => setDescription(e.target.value)}
+                  placeholder="Type here..."
+                />
+              </div>
             </div>
 
             <div className="flex flex-col mb-1 w-3/5 border rounded mt-4">

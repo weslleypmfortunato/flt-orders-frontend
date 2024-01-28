@@ -6,13 +6,13 @@ import warning from '../images/warning.png'
 import Navbar from "../components/Navbar";
 
 const CreateNewNcrPage = () => {
-  const [ncrs, setNcrs] = useState([]);
-  const [title, setTitle] = useState('');
-  const [reference, setReference] = useState('');
-  const [creator, setCreator] = useState('');
-  const [location, setLocation] = useState('');
-  const [descriptionLines, setDescriptionLines] = useState(['']);
-  const [refresh, setRefresh] = useState(true);
+  const [ncrs, setNcrs] = useState([])
+  const [title, setTitle] = useState('')
+  const [reference, setReference] = useState('')
+  const [creator, setCreator] = useState('')
+  const [location, setLocation] = useState('')
+  const [description, setDescription] = useState('')
+  const [refresh, setRefresh] = useState(true)
 
   const navigate = useNavigate()
 
@@ -32,23 +32,17 @@ const CreateNewNcrPage = () => {
     })
   }
 
-  const handleDescriptionChange = (e, index) => {
-    const newLines = [...descriptionLines];
-    newLines[index] = e.target.value;
-    setDescriptionLines(newLines);
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newNcr = { title, reference, creator, location, description: descriptionLines.join('\n') };
+    const newNcr = { title, reference, creator, location, description }
 
-    setNcrs([...ncrs, newNcr]);
-    setTitle('');
-    setReference('');
-    setCreator('');
-    setLocation('');
-    setDescriptionLines(['']);
+    setNcrs([...ncrs, newNcr])
+    setTitle('')
+    setReference('')
+    setCreator('')
+    setLocation('')
+    setDescription('')
 
     axios.post(`${process.env.REACT_APP_API_URL}/ncr/new`, newNcr, { headers })
       .then(response => {
@@ -123,17 +117,16 @@ const CreateNewNcrPage = () => {
                   placeholder="Type here..."
                 />
               </div>
-              {descriptionLines.map((line, index) => (
-                <div key={index} className="flex flex-row items-baseline gap-2 mb-1">
-                  <h4 className="text-lg font-semibold pl-2">Description:</h4>
+              <div className="flex flex-row items-baseline border-b gap-2 mb-1">
+                <h4 className="text-lg font-semibold pl-2 mr-7">Description:</h4>
                   <textarea
-                    className="pl-2 pt-2 border-b rounded-b w-full mx-2 h-36"
-                    value={line}
-                    onChange={(e) => handleDescriptionChange(e, index)}
+                    type="text"
+                    className="pl-2 border-b rounded-b w-full mx-2 mb-2"
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
                     placeholder="Type here..."
                   />
-                </div>
-              ))}
+              </div>
             </div>
 
             <div className="flex flex-col mb-1 w-3/5 border rounded mt-4">
@@ -162,4 +155,4 @@ const CreateNewNcrPage = () => {
   )
 }
 
-export default CreateNewNcrPage;
+export default CreateNewNcrPage
