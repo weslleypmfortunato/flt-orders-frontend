@@ -17,6 +17,7 @@ import CompletedWorkOrdersPage from './pages/CompletedWorkOrders';
 import CreateNewNcrPage from './pages/CreateNcrPage';
 import NcrListPage from './pages/NcrListPage';
 import PrintNcrPage from './pages/PrintNcrPage';
+import NcrEditPage from './pages/NcrEditPage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path='ncr/new' element={ <IsLogged><CreateNewNcrPage /> </IsLogged>}> </Route>
         <Route path='/ncr' element={ <IsLogged><NcrListPage /></IsLogged> }></Route>
         <Route path='/ncr/:ncrId' element={ <IsLogged><PrintNcrPage /></IsLogged> }></Route>
+        <Route path='/ncr/edit/:ncrId' element={ <IsLogged><NcrEditPage></NcrEditPage> </IsLogged> }></Route>
       </Routes>
     </div>
   );
