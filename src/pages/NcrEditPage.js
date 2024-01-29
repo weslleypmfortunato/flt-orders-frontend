@@ -171,7 +171,7 @@ const NcrEditPage = () => {
           </button>
         </form>
       </div>
-      <Link to={'/home'}>
+      <Link to={'/ncr'}>
         <p className="text-blue-500 underline mt-3">Back</p>
       </Link>
     </div>

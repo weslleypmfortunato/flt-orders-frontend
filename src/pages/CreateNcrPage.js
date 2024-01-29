@@ -117,11 +117,11 @@ const CreateNewNcrPage = () => {
                   placeholder="Type here..."
                 />
               </div>
-              <div className="flex flex-row items-baseline border-b gap-2 mb-1">
-                <h4 className="text-lg font-semibold pl-2 mr-7">Description:</h4>
+              <div className="flex flex-row items-baseline gap-2 mb-1">
+                <h4 className="text-lg font-semibold pl-2 mr-1">Description:</h4>
                   <textarea
                     type="text"
-                    className="pl-2 border-b rounded-b w-full mx-2 mb-2"
+                    className="pl-2 pt-1 border-b rounded-b w-full mx-2 mb-2"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                     placeholder="Type here..."
@@ -148,7 +148,7 @@ const CreateNewNcrPage = () => {
           </button>
         </form>
       </div>
-      <Link to={'/home'}>
+      <Link to={'/ncr'}>
         <p className="text-blue-500 underline mt-3">Back</p>
       </Link>
     </div>
