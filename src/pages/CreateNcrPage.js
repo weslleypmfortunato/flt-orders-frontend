@@ -4,9 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import warning from '../images/warning.png'
 import Navbar from "../components/Navbar";
+import DatePicker from "react-datepicker";
 
 const CreateNewNcrPage = () => {
   const [ncrs, setNcrs] = useState([])
+  const [ncrDate, setNcrDate] = useState('')
   const [title, setTitle] = useState('')
   const [reference, setReference] = useState('')
   const [creator, setCreator] = useState('')
@@ -35,9 +37,10 @@ const CreateNewNcrPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newNcr = { title, reference, creator, location, description }
+    const newNcr = { title, reference, creator, location, description, ncrDate }
 
     setNcrs([...ncrs, newNcr])
+    setNcrDate('')
     setTitle('')
     setReference('')
     setCreator('')
@@ -70,7 +73,19 @@ const CreateNewNcrPage = () => {
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col items-center">
             <div className="flex flex-col mb-1 w-3/5 border rounded">
-              <h2 className="mb-1 mt-1 text-xl font-semibold border-b h-9">NCR Identification</h2>
+              <div className="flex items-center border-b h-9">
+                <h2 className="mt-1.5 text-xl font-semibold flex-grow ml-60">NCR Identification</h2>
+                <div className="flex items-center">
+                  <h4 className="text-lg mt-1.5 font-semibold pr-2">Date:</h4>
+                  <DatePicker
+                    className="px-1 w-48"
+                    selected={ncrDate}
+                    onChange={(date) => setNcrDate(date)}
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="Date"
+                  />
+                </div>
+              </div>
               <div className="flex flex-row items-baseline border-b gap-2 mb-1">
                 <h4 className="text-lg font-semibold pl-2 mr-12">Title:</h4>
                 <input
