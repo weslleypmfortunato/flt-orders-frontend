@@ -34,8 +34,10 @@ const CreateNewNcrPage = () => {
     })
   }
 
+  const descriptionLength = 115
+
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const newNcr = { title, reference, creator, location, description, ncrDate }
 
@@ -53,7 +55,7 @@ const CreateNewNcrPage = () => {
         if (response.status === 201) {
           setRefresh(!refresh)
           Swal.fire({
-            text: 'NCR created succesfully!',
+            text: 'NCR created successfully!',
             imageUrl: warning,
             imageWidth: 100,
             imageHeight: 100,
@@ -65,9 +67,11 @@ const CreateNewNcrPage = () => {
       })
   }
 
+  const [charCount, setCharCount] = useState(descriptionLength)
+
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <h1 className="mb-4 mt-4 text-2xl font-semibold">Non-Conformance Report</h1>
       <div>
         <form onSubmit={handleSubmit}>
@@ -80,6 +84,7 @@ const CreateNewNcrPage = () => {
                   <DatePicker
                     className="px-1 w-48"
                     selected={ncrDate}
+                    required
                     onChange={(date) => setNcrDate(date)}
                     dateFormat="yyyy-MM-dd"
                     placeholderText="Date"
@@ -134,13 +139,21 @@ const CreateNewNcrPage = () => {
               </div>
               <div className="flex flex-row items-baseline gap-2 mb-1">
                 <h4 className="text-lg font-semibold pl-2 mr-1">Description:</h4>
-                  <textarea
+                <div className="flex flex-col w-screen mr-4">
+                  <input
                     type="text"
-                    className="pl-2 pt-1 border-b rounded-b w-full mx-2 mb-2"
+                    className="pl-2 border-b rounded-b w-full mx-2 h-8"
                     value={description}
-                    onChange={e => setDescription(e.target.value)}
+                    onChange={(e) => {
+                      const inputText = e.target.value
+                      const remainingChars = descriptionLength - inputText.length
+                      setDescription(inputText.slice(0, descriptionLength))
+                      setCharCount(remainingChars)
+                    }}
                     placeholder="Type here..."
                   />
+                  <div className="text-sm ml-2 text-gray-500 text-right">{charCount} characters remaining</div>
+                </div>
               </div>
             </div>
 
