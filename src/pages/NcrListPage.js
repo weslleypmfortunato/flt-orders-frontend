@@ -60,7 +60,7 @@ const NcrListPage = () => {
               <tr>
                 <th className="border px-4 py-2">TITLE</th>
                 <th className="border px-4 py-2">CREATOR</th>
-                <th className="border px-4 py-2">DATE</th>
+                <th className="border px-4 py-2">DATE (YMD)</th>
               </tr>
             </thead>
             <tbody>
