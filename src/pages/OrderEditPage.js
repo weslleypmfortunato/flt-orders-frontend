@@ -46,7 +46,7 @@ const OrderEditPage = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/order/${orderId}`, { headers })
       .then(response => {
         const {
-          workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink, materialStatus
+          workOrderNumber, productName, productDescription, orderQty, priority, owner, status, materialStatus, remarks, deleteStatus, orderLink
         } = response.data
         setWorkOrderNumber(workOrderNumber)
         setProductName(productName)
@@ -71,7 +71,7 @@ const OrderEditPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const editedOrder = {workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink, materialStatus}
+    const editedOrder = {workOrderNumber, productName, productDescription, orderQty, priority, owner, status, materialStatus, remarks, deleteStatus, orderLink}
 
     axios.put(`${process.env.REACT_APP_API_URL}/order/edit/${orderId}`, editedOrder)
       .then(response => {
@@ -208,7 +208,7 @@ const OrderEditPage = () => {
               </div>
               </div>
               <div className="flex flex-col items-start mt-2">
-              <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Order Link</label>
+              <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Link</label>
                 <input
                   type="text"
                   disabled={loggedInUser.user.level === "user"}

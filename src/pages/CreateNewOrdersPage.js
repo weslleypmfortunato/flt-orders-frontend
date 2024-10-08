@@ -43,6 +43,8 @@ const CreateNewOrdersPage = () => {
 
     const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink, materialStatus }
 
+    console.log("New Order Payload:", newOrder)
+
     setOrders([...orders, newOrder])
     setWorkOrderNumber('')
     setProductName('')
