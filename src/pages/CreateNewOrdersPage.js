@@ -17,7 +17,7 @@ const CreateNewOrdersPage = () => {
   const [remarks, setRemarks] = useState('')
   const [deleteStatus, setDeleteStatus] = useState(false)
   const [orderLink, setOrderLink] = useState('')
-  const [materialStatus, setMaterialStatus] = useState('')
+  const [material, setMaterial] = useState('')
   const [refresh, setRefresh] = useState(true)
 
   const navigate = useNavigate()
@@ -41,7 +41,7 @@ const CreateNewOrdersPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, materialStatus, remarks, deleteStatus, orderLink }
+    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, material, remarks, deleteStatus, orderLink }
 
     console.log("New Order Payload:", newOrder)
 
@@ -53,7 +53,7 @@ const CreateNewOrdersPage = () => {
     setPriority('')
     setOwner('')
     setStatus('')
-    setMaterialStatus('')
+    setMaterial('')
     setRemarks('')
     setDeleteStatus('')
     setOrderLink('')
@@ -149,8 +149,8 @@ const CreateNewOrdersPage = () => {
               </select>
               <select 
                 className="border-2 rounded px-1 w-48 h-9"
-                value={materialStatus}
-                onChange={e => setMaterialStatus(e.target.value)}>
+                value={material}
+                onChange={e => setMaterial(e.target.value)}>
                 <option value="">Material Status</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>

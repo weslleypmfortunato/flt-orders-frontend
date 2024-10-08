@@ -104,7 +104,7 @@ const WorkOrdersList = () => {
                   <th className="border border-gray-900 w-40 font-semibold text-sm">Status</th>
                   <th className="border border-gray-900 w-96 font-semibold text-sm">Remarks</th>
                   <th className="border border-gray-900 w-28 font-semibold text-sm">Order Details</th>
-                  <th className="border border-gray-900 w-28 font-semibold text-sm">Material Picked?</th>
+                  <th className="border border-gray-900 w-28 font-semibold text-sm">Material Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -125,8 +125,8 @@ const WorkOrdersList = () => {
                       {order.orderLink ? <a href={order.orderLink} target="_blank" rel="noopener noreferrer">WO Details</a> : ""}
                     </td>
                     <td 
-                      className={`text-blue-800 border border-gray-900 text-sm ${(order.materialStatus ==="Yes" && "text-blue-800 px-0.5") || (order.materialStatus ==="No" && "bg-pink-400 text-white font-semibold px-0.5") || (order.materialStatus ==="Partially" && "bg-purple-600 text-white font-semibold px-0.5") || (order.materialStatus ==="Shortage" && "bg-red-600 text-white font-semibold px-0.5")}`}>
-                        {order.materialStatus ? capitalizeFirstLetter(order.materialStatus) : ""}
+                      className={`text-blue-800 border border-gray-900 text-sm ${(order.material ==="Yes" && "text-blue-800 px-0.5") || (order.material ==="No" && "bg-pink-400 text-white font-semibold px-0.5") || (order.material ==="Partially" && "bg-purple-600 text-white font-semibold px-0.5") || (order.material ==="Shortage" && "bg-red-600 text-white font-semibold px-0.5")}`}>
+                        {order.material ? capitalizeFirstLetter(order.material) : ""}
                     </td>
                     <td className="border-0">
                       {/* <button
