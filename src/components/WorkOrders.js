@@ -19,7 +19,7 @@ const WorkOrdersList = () => {
 
   const messageError = () => {
     Swal.fire({
-      text: "Definir mensagem!",
+      text: "Internal Server Error. Try again",
       imageUrl: warning,
       imageWidth: 100,
       imageHeight: 100,
@@ -88,7 +88,7 @@ const WorkOrdersList = () => {
 
   return (
     <div className="flex flex-col items-center mt-2 w-full px-2">
-      <h1 className="mb-2 text-2xl font-semibold">Work Orders List!</h1>
+      <h1 className="mb-2 text-2xl font-semibold">Work Orders List</h1>
       <div>
         {orders.length > 0 && orders.filter(order => order.deleteStatus === false).length > 0 ? (
           <div className="w-full">
@@ -104,6 +104,7 @@ const WorkOrdersList = () => {
                   <th className="border border-gray-900 w-40 font-semibold text-sm">Status</th>
                   <th className="border border-gray-900 w-96 font-semibold text-sm">Remarks</th>
                   <th className="border border-gray-900 w-28 font-semibold text-sm">Order Details</th>
+                  <th className="border border-gray-900 w-28 font-semibold text-sm">Material Picked?</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,6 +123,10 @@ const WorkOrdersList = () => {
                     <td className="text-blue-800 border border-gray-900 text-left pl-1 text-sm">{capitalizeFirstLetter(order.remarks)}</td>
                     <td className="text-blue-800 border border-gray-900 pl-1 text-sm text-center">
                       {order.orderLink ? <a href={order.orderLink} target="_blank" rel="noopener noreferrer">WO Details</a> : ""}
+                    </td>
+                    <td 
+                      className={`text-blue-800 border border-gray-900 text-sm ${(order.materialStatus ==="Yes" && "text-blue-800 px-0.5") || (order.materialStatus ==="No" && "bg-pink-400 text-white font-semibold px-0.5") || (order.materialStatus ==="Partially" && "bg-purple-600 text-white font-semibold px-0.5") || (order.materialStatus ==="Shortage" && "bg-red-600 text-white font-semibold px-0.5")}`}>
+                        {order.materialStatus ? capitalizeFirstLetter(order.materialStatus) : ""}
                     </td>
                     <td className="border-0">
                       {/* <button

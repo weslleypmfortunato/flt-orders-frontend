@@ -13,6 +13,7 @@ const OrderEditPage = () => {
   const [priority, setPriority] = useState('')
   const [owner, setOwner] = useState('')
   const [status, setStatus] = useState('')
+  const [materialStatus, setMaterialStatus] = useState('')
   const [remarks, setRemarks] = useState('')
   const [deleteStatus, setDeleteStatus] = useState(false)
   const [orderLink, setOrderLink] = useState('')
@@ -29,7 +30,7 @@ const OrderEditPage = () => {
 
   const messageError = () => {
     Swal.fire({
-      text: "Definir mensagem!",
+      text: "Internal Server Error. Try again!",
       imageUrl: warning,
       imageWidth: 100,
       imageHeight: 100,
@@ -45,7 +46,7 @@ const OrderEditPage = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/order/${orderId}`, { headers })
       .then(response => {
         const {
-          workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink
+          workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink, materialStatus
         } = response.data
         setWorkOrderNumber(workOrderNumber)
         setProductName(productName)
@@ -54,6 +55,7 @@ const OrderEditPage = () => {
         setPriority(priority)
         setOwner(owner)
         setStatus(status)
+        setMaterialStatus(materialStatus)
         setRemarks(remarks)
         setDeleteStatus(deleteStatus)
         setOrderLink(orderLink)
@@ -69,7 +71,7 @@ const OrderEditPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const editedOrder = {workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink}
+    const editedOrder = {workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink, materialStatus}
 
     axios.put(`${process.env.REACT_APP_API_URL}/order/edit/${orderId}`, editedOrder)
       .then(response => {
@@ -155,7 +157,7 @@ const OrderEditPage = () => {
                     <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Priority</label>
                     <input
                       type="number"
-                      className={`border-2 rounded px-1 w-20 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                      className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
                       disabled={loggedInUser.user.level === "user"}
                       value={priority}
                       onChange={e => setPriority(e.target.value)}
@@ -166,7 +168,7 @@ const OrderEditPage = () => {
                     <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Qty</label>
                     <input
                       type="number"
-                      className={`border-2 rounded px-1 w-24 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
+                      className={`border-2 rounded px-1 w-48 h-9 ${loggedInUser.user.level ==="user" && "disabled:opacity-75 text-gray-400"}`}
                       disabled={loggedInUser.user.level === "user"}
                       required
                       value={orderQty}
@@ -174,10 +176,12 @@ const OrderEditPage = () => {
                       placeholder="Order Quantity"
                     />
                   </div>
+                </div>
+                <div className="flex mb-1">
                   <div className="flex flex-col items-start mt-2">
                     <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Status</label>
                     <select
-                      className="border-2 rounded px-1 w-52 h-9"
+                      className="border-2 rounded px-1 w-48 h-9"
                       value={status}
                       onChange={e => setStatus(e.target.value)}>
                       <option value="">Status</option>
@@ -188,7 +192,20 @@ const OrderEditPage = () => {
                       <option value="Expedite">Expedite</option>
                     </select>
                   </div>
-                </div>
+                  <div className="flex flex-col items-start mt-2">
+                    <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Material Status</label>
+                    <select
+                      className="border-2 rounded px-1 w-48 h-9"
+                      value={materialStatus}
+                      onChange={e => setMaterialStatus(e.target.value)}>
+                      <option value="">Status</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Partially">Partially Picked</option>
+                      <option value="Shortage">Shortage</option>
+                    </select>
+                  </div>
+              </div>
               </div>
               <div className="flex flex-col items-start mt-2">
               <label htmlFor="workOrderNumber" className="mr-2 text-gray-400 pl-1">Order Link</label>

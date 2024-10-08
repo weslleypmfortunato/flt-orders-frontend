@@ -17,6 +17,7 @@ const CreateNewOrdersPage = () => {
   const [remarks, setRemarks] = useState('')
   const [deleteStatus, setDeleteStatus] = useState(false)
   const [orderLink, setOrderLink] = useState('')
+  const [materialStatus, setMaterialStatus] = useState('')
   const [refresh, setRefresh] = useState(true)
 
   const navigate = useNavigate()
@@ -29,7 +30,7 @@ const CreateNewOrdersPage = () => {
 
   const messageError = () => {
     Swal.fire({
-      text: "Definir mensagem!",
+      text: "Internal Server Error. Try again!",
       imageUrl: warning,
       imageWidth: 100,
       imageHeight: 100,
@@ -40,7 +41,7 @@ const CreateNewOrdersPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink }
+    const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, remarks, deleteStatus, orderLink, materialStatus }
 
     setOrders([...orders, newOrder])
     setWorkOrderNumber('')
@@ -50,6 +51,7 @@ const CreateNewOrdersPage = () => {
     setPriority('')
     setOwner('')
     setStatus('')
+    setMaterialStatus('')
     setRemarks('')
     setDeleteStatus('')
     setOrderLink('')
@@ -117,21 +119,23 @@ const CreateNewOrdersPage = () => {
             <div className="flex mb-1">
               <input
                 type="number"
-                className="border-2 rounded px-1 w-20 h-9"
+                className="border-2 rounded px-1 w-48 h-9"
                 value={priority}
                 onChange={e => setPriority(e.target.value)}
                 placeholder="Priority"
               />
               <input
                 type="number"
-                className="border-2 rounded px-1 w-24 h-9"
+                className="border-2 rounded px-1 w-48 h-9"
                 required
                 value={orderQty}
                 onChange={e => setOrderQty(e.target.value)}
                 placeholder="Quantity"
               />
-              <select 
-                className="border-2 rounded px-1 w-52 h-9"
+            </div>
+            <div className="flex mb-1">
+            <select 
+                className="border-2 rounded px-1 w-48 h-9"
                 value={status}
                 onChange={e => setStatus(e.target.value)}>
                 <option value="">Status</option>
@@ -140,6 +144,16 @@ const CreateNewOrdersPage = () => {
                 <option value="Completed">Completed</option>
                 <option value="Missing Parts">Missing Parts</option>
                 <option value="Expedite">Expedite</option>
+              </select>
+              <select 
+                className="border-2 rounded px-1 w-48 h-9"
+                value={materialStatus}
+                onChange={e => setMaterialStatus(e.target.value)}>
+                <option value="">Material Status</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Partially">Partially Picked</option>
+                <option value="Shortage">Shortage</option>
               </select>
             </div>
             <input 
