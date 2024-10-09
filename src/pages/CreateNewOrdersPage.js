@@ -136,8 +136,8 @@ const CreateNewOrdersPage = () => {
             <div className="flex mb-1">
               <select 
                 className="border-2 rounded px-1 w-48 h-9"
-                value={status}
-                onChange={e => setStatus(e.target.value)}>
+                value={material}
+                onChange={e => setMaterial(e.target.value)}>
                 <option value="">Status</option>
                 <option value="In Progress"> In Progress</option>
                 <option value="Partially Completed">Partially Completed</option>
@@ -145,23 +145,16 @@ const CreateNewOrdersPage = () => {
                 <option value="Missing Parts">Missing Parts</option>
                 <option value="Expedite">Expedite</option>
               </select>
-              {/* <select 
+              <select 
                 className="border-2 rounded px-1 w-48 h-9"
-                value={material}
-                onChange={e => setMaterial(e.target.value)}>
+                value={status}
+                onChange={e => setStatus(e.target.value)}>
                 <option value="">Material Status</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
                 <option value="Partially">Partially Picked</option>
                 <option value="Shortage">Shortage</option>
-              </select> */}
-              <input 
-              type="text" 
-              className="border-2 rounded px-1 w-48 h-9 mb-1"
-              value={material}
-              onChange={e => setMaterial(e.target.value)}
-              placeholder="Material Status"
-              />
+              </select>
             </div>
             <input 
               type="text" 
