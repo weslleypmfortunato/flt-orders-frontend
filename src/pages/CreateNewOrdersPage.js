@@ -14,10 +14,10 @@ const CreateNewOrdersPage = () => {
   const [priority, setPriority] = useState(100)
   const [owner, setOwner] = useState('')
   const [status, setStatus] = useState('')
+  const [material, setMaterial] = useState('')
   const [remarks, setRemarks] = useState('')
   const [deleteStatus, setDeleteStatus] = useState(false)
   const [orderLink, setOrderLink] = useState('')
-  const [material, setMaterial] = useState('')
   const [refresh, setRefresh] = useState(true)
 
   const navigate = useNavigate()
@@ -42,8 +42,6 @@ const CreateNewOrdersPage = () => {
     e.preventDefault()
 
     const newOrder = { workOrderNumber, productName, productDescription, orderQty, priority, owner, status, material, remarks, deleteStatus, orderLink }
-
-    console.log("New Order Payload:", newOrder)
 
     setOrders([...orders, newOrder])
     setWorkOrderNumber('')
@@ -136,7 +134,7 @@ const CreateNewOrdersPage = () => {
               />
             </div>
             <div className="flex mb-1">
-            <select 
+              <select 
                 className="border-2 rounded px-1 w-48 h-9"
                 value={status}
                 onChange={e => setStatus(e.target.value)}>
@@ -147,7 +145,7 @@ const CreateNewOrdersPage = () => {
                 <option value="Missing Parts">Missing Parts</option>
                 <option value="Expedite">Expedite</option>
               </select>
-              <select 
+              {/* <select 
                 className="border-2 rounded px-1 w-48 h-9"
                 value={material}
                 onChange={e => setMaterial(e.target.value)}>
@@ -156,7 +154,14 @@ const CreateNewOrdersPage = () => {
                 <option value="No">No</option>
                 <option value="Partially">Partially Picked</option>
                 <option value="Shortage">Shortage</option>
-              </select>
+              </select> */}
+              <input 
+              type="text" 
+              className="border-2 rounded px-1 w-48 h-9 mb-1"
+              value={material}
+              onChange={e => setMaterial(e.target.value)}
+              placeholder="Material Status"
+              />
             </div>
             <input 
               type="text" 
