@@ -199,8 +199,8 @@ const OrderEditPage = () => {
                       value={material}
                       onChange={e => setMaterial(e.target.value)}>
                       <option value="">Status</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
+                      <option value="Picked">Picked</option>
+                      <option value="Not Picked">Not Picked</option>
                       <option value="Partially">Partially Picked</option>
                       <option value="Shortage">Shortage</option>
                     </select>

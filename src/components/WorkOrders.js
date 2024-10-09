@@ -125,7 +125,7 @@ const WorkOrdersList = () => {
                       {order.orderLink ? <a href={order.orderLink} target="_blank" rel="noopener noreferrer">WO Details</a> : ""}
                     </td>
                     <td 
-                      className={`text-blue-800 border border-gray-900 text-sm ${(order.material ==="Yes" && "text-blue-800 px-0.5") || (order.material ==="No" && "bg-pink-400 text-white font-semibold px-0.5") || (order.material ==="Partially" && "bg-purple-600 text-white font-semibold px-0.5") || (order.material ==="Shortage" && "bg-red-600 text-white font-semibold px-0.5")}`}>
+                      className={`text-blue-800 border border-gray-900 text-sm ${(order.material ==="Picked" && "text-blue-800 px-0.5") || (order.material ==="Not Picked" && "bg-pink-400 text-white font-semibold px-0.5") || (order.material ==="Partially" && "bg-purple-600 text-white font-semibold px-0.5") || (order.material ==="Shortage" && "bg-red-600 text-white font-semibold px-0.5")}`}>
                         {order.material ? capitalizeFirstLetter(order.material) : ""}
                     </td>
                     <td className="border-0">
