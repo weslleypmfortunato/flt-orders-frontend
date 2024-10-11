@@ -95,8 +95,8 @@ const WorkOrdersList = () => {
             <table className="mb-0.5">
               <thead>
                 <tr>
-                  <th className="border border-gray-900 w-16 px-1 font-semibold text-sm">Priority</th>
-                  <th className="border border-gray-900 w-24 font-semibold text-sm">Work Order</th>
+                  <th className="border border-gray-900 w-16 px-1 font-semibold text-sm bg-white">Priority</th>
+                  <th className="border border-gray-900 w-24 font-semibold text-sm bg-white">Work Order</th>
                   <th className="border border-gray-900 px-1 font-semibold text-sm">Product</th>
                   <th className="border border-gray-900 w-64 font-semibold text-sm">Description</th>
                   <th className="border border-gray-900 px-1 font-semibold text-sm">Qty</th>
@@ -110,8 +110,8 @@ const WorkOrdersList = () => {
               <tbody>
                 {orders.map((order) => (
                   <tr key={order._id} className="hover:bg-blue-100">
-                    <td className={`border border-gray-900 w-16 px-1 text-sm ${order.priority === 100 ? "text-transparent" : "text-blue-800"}`}>{order.priority}</td>
-                    <td className="text-blue-800 border border-gray-900 text-sm"><Link to={`/order/edit/${order._id}`} className="text-blue-800">{order.workOrderNumber}</Link></td>
+                    <td className={`border border-gray-900 w-16 px-1 text-sm bg-white ${order.priority === 100 ? "text-transparent" : "text-blue-800"}`}>{order.priority}</td>
+                    <td className="text-blue-800 border border-gray-900 text-sm bg-white"><Link to={`/order/edit/${order._id}`} className="text-blue-800">{order.workOrderNumber}</Link></td>
                     <td className="text-blue-800 border border-gray-900 text-sm">{order.productName.toUpperCase()}</td>
                     <td className="text-blue-800 border border-gray-900 w-20 text-sm">{order.productDescription.toUpperCase()}</td>
                     <td className="text-blue-800 border border-gray-900 text-sm">{order.orderQty}</td>
@@ -170,7 +170,7 @@ const WorkOrdersList = () => {
           {shortages.length > 0 ? (
             <div>
               <div className="w-full">
-                <table className="mb-0.5">
+                <table className="mb-0.5 bg-white">
                   <thead>
                     <tr>
                       <th className="border border-gray-900 w-96 font-semibold text-sm">Material</th>
@@ -207,7 +207,7 @@ const WorkOrdersList = () => {
         <Link to='/shortages/new'>
           <button
             type="button"
-            className={`border-1 mb-4 border-blue-500 rounded text-lg px-2 hover:bg-blue-500 hover:text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900 ${loggedInUser.user.level ==="user" && "hidden"}`}>
+            className={`border-1 mb-4 border-blue-500 rounded text-lg px-2 hover:bg-blue-500 hover:text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900 bg-gray-100 ${loggedInUser.user.level ==="user" && "hidden"}`}>
             Add New Shortage
           </button>
         </Link>
