@@ -97,7 +97,7 @@ const WorkOrdersList = () => {
                 <tr>
                   <th className="border border-gray-900 w-16 px-1 font-semibold text-sm bg-white">Priority</th>
                   <th className="border border-gray-900 w-24 font-semibold text-sm bg-white">Work Order</th>
-                  <th className="border border-gray-900 px-1 font-semibold text-sm">Product</th>
+                  <th className="border border-gray-900 px-1 font-semibold text-sm bg-white">Product</th>
                   <th className="border border-gray-900 w-64 font-semibold text-sm">Description</th>
                   <th className="border border-gray-900 px-1 font-semibold text-sm">Qty</th>
                   <th className="border border-gray-900 w-28 font-semibold text-sm">Owner</th>
