@@ -95,9 +95,9 @@ const WorkOrdersList = () => {
             <table className="mb-0.5">
               <thead>
                 <tr>
-                  <th className="border border-gray-900 w-16 px-1 font-semibold text-sm bg-white">Priority</th>
-                  <th className="border border-gray-900 w-24 font-semibold text-sm bg-white">Work Order</th>
-                  <th className="border border-gray-900 px-1 font-semibold text-sm bg-white">Product</th>
+                  <th className="border border-gray-900 w-16 px-1 font-semibold text-sm">Priority</th>
+                  <th className="border border-gray-900 w-24 font-semibold text-sm">Work Order</th>
+                  <th className="border border-gray-900 px-1 font-semibold text-sm">Product</th>
                   <th className="border border-gray-900 w-64 font-semibold text-sm">Description</th>
                   <th className="border border-gray-900 px-1 font-semibold text-sm">Qty</th>
                   <th className="border border-gray-900 w-28 font-semibold text-sm">Owner</th>
@@ -110,8 +110,8 @@ const WorkOrdersList = () => {
               <tbody>
                 {orders.map((order) => (
                   <tr key={order._id} className="hover:bg-blue-100">
-                    <td className={`border border-gray-900 w-16 px-1 text-sm bg-white ${order.priority === 100 ? "text-transparent" : "text-blue-800"}`}>{order.priority}</td>
-                    <td className="text-blue-800 border border-gray-900 text-sm bg-white"><Link to={`/order/edit/${order._id}`} className="text-blue-800">{order.workOrderNumber}</Link></td>
+                    <td className={`border border-gray-900 w-16 px-1 text-sm ${order.priority === 100 ? "text-transparent" : "text-blue-800"}`}>{order.priority}</td>
+                    <td className="text-blue-800 border border-gray-900 text-sm"><Link to={`/order/edit/${order._id}`} className="text-blue-800">{order.workOrderNumber}</Link></td>
                     <td className="text-blue-800 border border-gray-900 text-sm">{order.productName.toUpperCase()}</td>
                     <td className="text-blue-800 border border-gray-900 w-20 text-sm">{order.productDescription.toUpperCase()}</td>
                     <td className="text-blue-800 border border-gray-900 text-sm">{order.orderQty}</td>

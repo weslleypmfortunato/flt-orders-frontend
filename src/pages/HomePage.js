@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar"
 import WorkOrdersList from "../components/WorkOrders"
-import halloween4 from '../images/halloween4.jpg'
+// import halloween4 from '../images/halloween4.jpg'
 
 
 const HomePage = () => {
@@ -8,14 +8,14 @@ const HomePage = () => {
 
   return (
     <div 
-      style={{
-        backgroundImage: `url(${halloween4})`,
-        backgroundSize: '100% 100%', 
-        backgroundPosition: 'top center', 
-        backgroundRepeat: 'no-repeat', 
-        minHeight: '100vh', 
-        width: '100vw'
-      }}
+      //style={{
+        //backgroundImage: `url(${halloween4})`,
+        //backgroundSize: '100% 100%', 
+        //backgroundPosition: 'top center', 
+        //backgroundRepeat: 'no-repeat', 
+        //minHeight: '100vh', 
+        //width: '100vw'
+      //}}
     >
       <Navbar />
       <div className="flex flex-col items-center">
