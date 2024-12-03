@@ -88,10 +88,10 @@ const WorkOrdersList = () => {
 
   return (
     <div className="flex flex-col items-center mt-2 w-full px-2">
-      <h1 className="mb-2 text-2xl font-semibold">Work Orders List</h1>
+      <h1 className="mb-2 text-2xl font-semibold text-white">Work Orders List</h1>
       <div>
         {orders.length > 0 && orders.filter(order => order.deleteStatus === false).length > 0 ? (
-          <div className="w-full">
+          <div className="w-full bg-white">
             <table className="mb-0.5">
               <thead>
                 <tr>
@@ -156,7 +156,7 @@ const WorkOrdersList = () => {
         <Link to='/orders/new'>
           <button
             type="button"
-            className={`border-1 border-blue-500 rounded text-lg px-2 hover:bg-blue-500 hover:text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900 ${loggedInUser.user.level ==="user" && "hidden"}`}>
+            className={`border-1 border-blue-500 rounded text-lg px-2 bg-gray-100 hover:bg-blue-500 hover:text-white font-semibold mt-2 w-52 h-9 transition duration-500 transform hover:scale-105 hover:border hover:border-blue-900 shadow-xl shadow-blue-900 ${loggedInUser.user.level ==="user" && "hidden"}`}>
             Add New Order
           </button>
         </Link>

@@ -21,21 +21,21 @@ const Navbar = props => {
           </li>
           <div className="flex font-semibold mt-3 mr-2">
             <li className="mr-10">
-              <Link to='/home' className="no-underline hover:underline bg-white px-1 rounded">Home</Link>
+              <Link to='/home' className="no-underline hover:underline bg-white px-1 rounded py-0.5">Home</Link>
             </li>
             <li className="mr-10">
-              <Link to='/completed-orders' className="no-underline hover:underline bg-white px-1 rounded">Order History</Link>
+              <Link to='/completed-orders' className="no-underline hover:underline bg-white px-1 rounded py-0.5">Order History</Link>
             </li>
             <li className="mr-10">
-              <Link to='/users' className="no-underline hover:underline bg-white px-1 rounded">Users</Link>
+              <Link to='/users' className="no-underline hover:underline bg-white px-1 rounded py-0.5">Users</Link>
             </li>
             <li className="mr-10">
-              <Link to='/ncr' className="no-underline hover:underline bg-white px-1 rounded">NCR</Link>
+              <Link to='/ncr' className="no-underline hover:underline bg-white px-1 rounded py-0.5">NCR</Link>
             </li>
             <li>
               <Link
                 to={'/'}
-                className="no-underline hover:underline bg-white px-1 rounded"
+                className="no-underline hover:underline bg-white px-1 rounded py-0.5"
                 onClick={() => logout(employee.jwt)}>
                 Logout
               </Link>
