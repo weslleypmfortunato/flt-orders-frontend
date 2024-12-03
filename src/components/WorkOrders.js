@@ -149,7 +149,7 @@ const WorkOrdersList = () => {
             </table>
           </div>
         ) : (
-          <p className="mt-3 text-base border rounded px-5 mx-5 w-96 py-4">Waiting for orders...</p>
+          <p className="mt-3 text-base border rounded px-5 mx-5 w-96 py-4">Loading...</p>
         )}
       </div>
       <div>
