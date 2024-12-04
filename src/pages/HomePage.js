@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar"
 import WorkOrdersList from "../components/WorkOrders"
-import natal6 from '../images/natal6.jpg'
+import natal6 from '../images/natal2.jpg'
 
 
 const HomePage = () => {
