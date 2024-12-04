@@ -88,7 +88,7 @@ const WorkOrdersList = () => {
 
   return (
     <div className="flex flex-col items-center mt-2 w-full px-2">
-      <h1 className="mb-2 text-2xl font-semibold text-white">Work Orders List</h1>
+      <h1 className="mb-2 text-2xl font-semibold bg-white px-1 py-1 rounded">Work Orders List</h1>
       <div>
         {orders.length > 0 && orders.filter(order => order.deleteStatus === false).length > 0 ? (
           <div className="w-full bg-white">
@@ -164,8 +164,8 @@ const WorkOrdersList = () => {
       <div>
       </div>
 
-      <div>
-        <h1 className="mb-2 mt-5 text-2xl font-semibold">Shortage List</h1>
+      <div className="flex flex-col items-center mt-2 w-full px-2r">
+        <h1 className="mb-2 mt-5 text-2xl font-semibold bg-white px-1 py-1 rounded w-56">Shortage List</h1>
         <div>
           {shortages.length > 0 ? (
             <div>
