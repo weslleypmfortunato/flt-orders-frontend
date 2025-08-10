@@ -429,7 +429,7 @@ const NcrEditPage = () => {
                   <div className="flex flex-row items-start border-b gap-4 mb-2 pb-2 pt-2">
                     <h4 className="pl-2 text-lg font-semibold w-44">Cause:</h4>
                     <textarea
-                      className="px-2 w-full resize-none overflow-hidden mx-2"
+                      className="px-2 w-full resize-none overflow-hidden mx-2 whitespace-pre-wrap break-words"
                       value={causeOfNcr}
                       onChange={e => setCauseOfNcr(e.target.value)}
                       onInput={e => {
