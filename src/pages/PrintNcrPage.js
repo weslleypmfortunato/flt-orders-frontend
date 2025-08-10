@@ -43,6 +43,7 @@ const PrintNcrPage = () => {
   }
 
   const shortenedNcrDate = ncr.ncrDate?.substring(0, 10) || "No Date Provided";
+  const shortenedNcrCloseDate = ncr.closeOutDate?.substring(0, 10) || "No Date Provided";
 
   const qrCodeData = {
     title: ncr.title,
@@ -99,12 +100,28 @@ const PrintNcrPage = () => {
         </div>
         <div className="flex flex-col mb-0 w-11/12 border border-black rounded mt-4">
           <h2 className="mb-1 mt-1 text-lg font-semibold border-b border-black h-7 text-center">Non-Conformance Close-out</h2>
+          <div className="flex flex-row items-baseline border-b border-black mt-1">
+              <h4 className="text-base font-semibold pl-2 border-black">Close-out Date:</h4>
+              <div className="text-left whitespace-pre-line text-sm ml-1">{shortenedNcrCloseDate}</div>
+          </div>
           <div className="flex flex-col mb-1 text-left">
-            <h4 className="text-base font-semibold pl-2 border-b border-black h-48">Cause of NCR:</h4>
-            <h4 className="text-base font-semibold pl-2 border-b border-black h-7">Close-out Date:</h4>
-            <h4 className="text-base font-semibold pl-2 border-b border-black h-48">Reason for Closure:</h4>
-            <h4 className="text-base font-semibold pl-2 border-b border-black h-7">Latest Disposition:</h4>
-            <h4 className="text-base font-semibold pl-2 h-4">Closer:</h4>
+            <div className="flex flex-col border-b border-black mb-1">
+              <h4 className="text-base font-semibold pl-2 border-black">Cause of NCR:</h4>
+              <p className="text-left whitespace-pre-line text-sm ml-2">{ncr.causeOfNcr}</p>
+            </div>
+            
+            <div className="flex flex-col border-b border-black mb-1">
+              <h4 className="text-base font-semibold pl-2 border-black">Reason for Closure:</h4>
+              <p className="text-left whitespace-pre-line text-sm ml-2">{ncr.reasonForClosure}</p>
+            </div>
+            <div className="flex flex-col border-b border-black mb-1">
+              <h4 className="text-base font-semibold pl-2 border-black">Latest Disposition:</h4>
+              <p className="text-left whitespace-pre-line text-sm ml-2">{ncr.latestDisposition}</p>
+            </div>
+            <div className="flex flex-row items-baseline border-black gap-2 mb-1 h-7">
+              <h4 className="text-base font-semibold pl-2 mt-1">Closer:</h4>
+              <p className="text-left whitespace-pre-line text-sm">{ncr.closer}</p>
+            </div>
           </div>
         </div>
         <div className="mt-2 w-24">
