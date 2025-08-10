@@ -443,7 +443,7 @@ const NcrEditPage = () => {
                   <div className="flex flex-row items-start border-b gap-4 mb-2">
                     <h4 className="pl-2 text-lg font-semibold w-44">Reason for Closure:</h4>
                     <textarea
-                      className="px-2 w-full resize-none overflow-hidden mx-2"
+                      className="px-2 w-full resize-none overflow-hidden mx-2 whitespace-pre-wrap break-words"
                       value={reasonForClosure}
                       onChange={e => setReasonForClosure(e.target.value)}
                       onInput={e => {
@@ -457,7 +457,7 @@ const NcrEditPage = () => {
                   <div className="flex flex-row items-start border-b gap-4 mb-2">
                     <h4 className="pl-2 text-lg font-semibold w-44">Latest Disposition:</h4>
                     <textarea
-                      className="px-2 w-full resize-none overflow-hidden mx-2"
+                      className="px-2 w-full resize-none overflow-hidden mx-2 whitespace-pre-wrap break-words"
                       value={latestDisposition}
                       onChange={e => setLatestDisposition(e.target.value)}
                       onInput={e => {
