@@ -418,7 +418,6 @@ const NcrEditPage = () => {
                   <DatePicker
                     className="px-1 border-b rounded-b w-28 text-center"
                     selected={closeOutDate}
-                    required
                     onChange={(date) => setCloseOutDate(date)}
                     dateFormat="yyyy-MM-dd"
                     placeholderText="Date"
