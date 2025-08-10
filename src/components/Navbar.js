@@ -20,17 +20,20 @@ const Navbar = props => {
             </Link>
           </li>
           <div className="flex font-semibold mt-3 mr-2">
-            <li className="mr-10">
+            {/* <li className="mr-10">
               <Link to='/home' className="no-underline hover:underline bg-white px-1 rounded py-0.5">Home</Link>
+            </li> */}
+            <li className="mr-10">
+              <Link to='/ncr' className="no-underline hover:underline bg-white px-1 rounded py-0.5">NCR</Link>
             </li>
             <li className="mr-10">
-              <Link to='/completed-orders' className="no-underline hover:underline bg-white px-1 rounded py-0.5">Order History</Link>
+              <Link to='/completed-orders' className="no-underline hover:underline bg-white px-1 rounded py-0.5">Old Order History</Link>
             </li>
             <li className="mr-10">
               <Link to='/users' className="no-underline hover:underline bg-white px-1 rounded py-0.5">Users</Link>
             </li>
             <li className="mr-10">
-              <Link to='/ncr' className="no-underline hover:underline bg-white px-1 rounded py-0.5">NCR</Link>
+              <Link to='/dashboard' className="no-underline hover:underline bg-white px-1 rounded py-0.5">Old Dashboard</Link>
             </li>
             <li>
               <Link

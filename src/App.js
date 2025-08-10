@@ -24,7 +24,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={ <LoginPage />}></Route>
-        <Route path='/home' element={ <IsLogged><HomePage /></IsLogged> }></Route>
+        <Route path='/home' element={ <IsLogged><NcrListPage /></IsLogged> }></Route>
+        <Route path='/dashboard' element={ <IsLogged><HomePage /></IsLogged> }></Route>
         <Route path='/orders/new' element={ <IsLogged roles={["admin", "organizer"]}><CreateNewOrdersPage /></IsLogged> }></Route>
         <Route path='/completed-orders' element={ <IsLogged roles={["admin", "organizer", "user"]}> <CompletedWorkOrdersPage /> </IsLogged> }></Route>
         <Route path='/shortages/new' element={ <IsLogged roles={["admin", "organizer"]}><CreateNewShortagesPage /></IsLogged> }></Route>
